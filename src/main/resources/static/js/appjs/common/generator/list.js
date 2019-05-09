@@ -62,7 +62,7 @@ function load() {
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="生成代码" onclick="code(\''
 												+ row.tableName
-												+ '\')"><i class="fa fa-code"></i></a> ';
+												+ '\')"><i class="fa fa-code"></i>生成代码</a> ';
 										return e;
 									}
 								} ]
