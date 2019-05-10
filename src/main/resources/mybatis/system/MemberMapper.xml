@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.MemberDao">
+
+	<select id="get" resultType="com.bootdo.system.domain.MemberDO">
+		select `member_id`,`username`,`name`,`password`,`email`,`mobile`,`create_date`,`update_date` from w_member where member_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.system.domain.MemberDO">
+		select `member_id`,`username`,`name`,`password`,`email`,`mobile`,`create_date`,`update_date` from w_member
+        <where>  
+		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="password != null and password != ''"> and password = #{password} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by member_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from w_member
+		 <where>  
+		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="password != null and password != ''"> and password = #{password} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.system.domain.MemberDO" useGeneratedKeys="true" keyProperty="memberId">
+		insert into w_member
+		(
+			`username`, 
+			`name`, 
+			`password`, 
+			`email`, 
+			`mobile`, 
+			`create_date`, 
+			`update_date`
+		)
+		values
+		(
+			#{username}, 
+			#{name}, 
+			#{password}, 
+			#{email}, 
+			#{mobile}, 
+			#{createDate}, 
+			#{updateDate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.system.domain.MemberDO">
+		update w_member 
+		<set>
+			<if test="username != null">`username` = #{username}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="password != null">`password` = #{password}, </if>
+			<if test="email != null">`email` = #{email}, </if>
+			<if test="mobile != null">`mobile` = #{mobile}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="updateDate != null">`update_date` = #{updateDate}</if>
+		</set>
+		where member_id = #{memberId}
+	</update>
+	
+	<delete id="remove">
+		delete from w_member where member_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from w_member where member_id in 
+		<foreach item="memberId" collection="array" open="(" separator="," close=")">
+			#{memberId}
+		</foreach>
+	</delete>
+
+</mapper>
