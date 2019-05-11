@@ -78,6 +78,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/system/memberLike/**","anon");
         filterChainDefinitionMap.put("/system/friendHref/**","anon");
         filterChainDefinitionMap.put("/system/webMenu/**","anon");
+        filterChainDefinitionMap.put("/common/sysFile/**","anon");
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/getVerify","anon");
         filterChainDefinitionMap.put("/css/**", "anon");
