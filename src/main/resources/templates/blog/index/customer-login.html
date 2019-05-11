@@ -6,42 +6,106 @@
 	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top bg-color" ></nav>
 
 	<div style="margin-top: 140px;">
-		<!--菜谱部分-->
+		<!--登录部分-->
 		<div class="main_mid_product">
-			<div class="mid_product_min">
-				<!--产品展示卡片-->
-				<div class="product_cards">
-					<div class="fir_M2HIS floatl marginR15 imdBorder">
-						<img src="img/cook/1.jpg" class="m2his_png">
-						<hr>
-						<span class="priceSpan">登录页面</span>
-						<span class="buyBtn">已收藏</span>
-					</div>
+			<div class="mid_product_min" style="text-align: center">
+				<div style="font-size: 24px; font-weight: bold; color: #ff5227; margin-bottom: 100px">
+					<span style="margin-right: 20px">- - - - - - - - </span>
+					<span style="margin-right: 20px">登录菜谱分享网</span>
+					<span>- - - - - - - - </span>
+				</div>
 
-					<div class="sec_home_doc floatl marginR15 imdBorder">
-						<img src="img/cook/1.jpg" class="jiating_png">
-						<hr>
-						<span class="priceSpan">登录页面</span>
-						<span class="buyBtn">收藏</span>
+				<div>
+					<div style="margin-bottom: 20px">
+						<input id="userNameLogin" type="text" class="form-control" placeholder="请输入用户名" style="width: 50%; margin-left: 25%">
 					</div>
-
-					<div class="thi_doc_app floatl marginR15 imdBorder">
-						<img src="img/cook/1.jpg" class="mobile_png">
-						<hr>
-						<span class="priceSpan">登录页面</span>
-						<span class="buyBtn">收藏</span>
+					<div style="margin-bottom: 40px">
+						<input id="passwordLogin" type="password" class="form-control" placeholder="请输入密码" style="width: 50%; margin-left: 25%">
 					</div>
-
-					<div class="thi_doc_app floatl imdBorder">
-						<img src="img/cook/1.jpg" class="mobile_png">
-						<hr>
-						<span class="priceSpan">登录页面</span>
-						<span class="buyBtn">收藏</span>
+					<div>
+						<button id="loginBtn" type="button" class="btn btn-default btn-danger" style="padding: 10px 25px; border-radius: 10px">登录</button>
 					</div>
-					<div class="clear"></div>
 				</div>
 			</div>
 		</div>
+
+		<!--<div class="wrapper wrapper-content">-->
+			<!--<div class="row">-->
+				<!--<div class="col-sm-12">-->
+					<!--<div class="ibox float-e-margins">-->
+						<!--<div class="ibox-content">-->
+							<!--<div class="col-sm-12">-->
+								<!--<h4>发布文章</h4>-->
+							<!--</div>-->
+							<!--<form class="form-horizontal m-t" id="signupForm">-->
+								<!--<input id="cid" name="cid" type="hidden">-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-1 control-label">标题：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="title" name="title" class="form-control" type="text">-->
+									<!--</div>-->
+									<!--<label class="col-sm-1 control-label">作者：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="author" name="author" class="form-control"-->
+										       <!--type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<input id="content" name="content" type="hidden"> <label-->
+										<!--class="col-sm-1 control-label">内容：</label>-->
+									<!--<div class="col-sm-11">-->
+										<!--<div class="ibox-content no-padding">-->
+											<!--<div id="content_sn" class="summernote"></div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-1 control-label">类型：</label>-->
+									<!--<div class="col-sm-11">-->
+										<!--<input id="categories" name="categories" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">开启评论：</label>-->
+									<!--<div class="switch onoffswitch col-sm-1">-->
+										<!--<div class="onoffswitch">-->
+											<!--<input id="allowComment" name="allowComment" checked=""-->
+											       <!--type="checkbox" value="1" class="onoffswitch-checkbox"-->
+											<!--&gt; <label class="onoffswitch-label"-->
+											         <!--for="allowComment"> <span class="onoffswitch-inner"></span>-->
+											<!--<span class="onoffswitch-switch"></span>-->
+										<!--</label>-->
+										<!--</div>-->
+									<!--</div>-->
+
+									<!--<label class="col-sm-2 control-label">允许订阅：</label>-->
+									<!--<div class="switch onoffswitch col-sm-2">-->
+										<!--<div class="onoffswitch">-->
+											<!--<input id="allowFeed" name="allowFeed" type="checkbox"-->
+											       <!--value="1" class="onoffswitch-checkbox" >-->
+											<!--<label class="onoffswitch-label" for="allowFeed"> <span-->
+													<!--class="onoffswitch-inner"></span> <span-->
+													<!--class="onoffswitch-switch"></span>-->
+											<!--</label>-->
+										<!--</div>-->
+									<!--</div>-->
+									<!--<input id="status" name="status" type="hidden">-->
+								<!--</div>-->
+								<!--<div class="text-right form-group">-->
+									<!--<a class="btn btn-default waves-effect waves-light"-->
+									   <!--onclick="returnList()">返回列表</a>-->
+									<!--<button-->
+											<!--class="btn btn-primary waves-effect waves-light" type="submit">保存文章</button>-->
+									<!--<button-->
+											<!--class="btn btn-warning waves-effect waves-light"-->
+											<!--onclick="save(0)">存为草稿</button>-->
+								<!--</div>-->
+							<!--</form>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
 
 		<!--底部-->
 		<div class="footer_shouye">
@@ -80,59 +144,36 @@
 	</div>
 </body>
 	<div th:include="blog/index/include_blog::footer"></div>
+
 	<script type="text/javascript">
-		var limit = 10;
-		var currentPage = 0;
-		var total;
-		$(function(){
-//			bindList(0);
-
-		});
-
-		function nextPage() {
-//			bindList(currentPage * limit)
-		}
-		function bindList(offset) {
-			$
-				.ajax({
-					url : 'blog/open/list?type=article&limit=10&offset=' + offset,
-					method : 'get',
-					dataType : 'json',
-					success : function(data) {
-						var rows = data.rows;
-						total = data.total;
-						var htmlText = "";
-						for (i = 0; i < rows.length; i++) {
-							htmlText += '<div class="post-preview">';
-							htmlText += '<a href="/blog/open/post/' + rows[i].cid + '">';
-							htmlText += '<h2 class="post-title">';
-							htmlText += rows[i].title;
-							htmlText += '</h2>';
-							htmlText += '</a>';
-							htmlText += '<p class="post-meta">作者：<a href="#">'
-								+ rows[i].author
-								+ '</a> &nbsp;&nbsp; '
-								+ rows[i].gtmModified + '</p>';
-							htmlText += '</div>';
-							htmlText += '<hr>';
-						}
-						$("#incomeNum").append(htmlText);
-						document.getElementById("flagLoad").style.display = "block";
-						currentPage++;
-						if (total <= currentPage * limit) {
-							document.getElementById("flagLoaded").style.display = "block";
-							document.getElementById("flagLoad").style.display = "none";
-						}
-					}
-				});
-		}
-
         $(function(){
             $("li").click(function() {
                 $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
                 $(this).addClass('selected');                            // 为当前li添加边框样式
             });
+
+            // 登录
+            $("#loginBtn").click(function () {
+                var userName = $("#userNameLogin").val();
+                var password = $("#passwordLogin").val();
+                $.ajax({
+                    url: 'http://76b1262b.ngrok.io/online-admin/system/user/login?userName=' + userName + '&password=' + password,
+                    type: 'get',
+                    success: function (_data) {
+                        if (_data.success) {
+                            alert('登录成功');
+                        } else {
+                            alert(_data.msg);
+                        }
+                    },
+                    error: function () {
+                        alert('登录失败,请重新登录')
+                    }
+                });
+            });
         });
+
+
 	</script>
 
 

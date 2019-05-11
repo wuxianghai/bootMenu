@@ -9,6 +9,7 @@
 <!--<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 <link href="/css/blog/clean-blog.css" rel="stylesheet">
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/css/style.css?v=4.1.0" rel="stylesheet">
 <style type="text/css">
 	@media (max-width:768px){
 		.side{ display:none;  }
@@ -339,6 +340,20 @@
 		color: #84a9cb;
 		margin: auto!important;
 	}
+	.display-none {
+		display: none;
+	}
+	#menuSort {
+		min-width: 160px;
+		position: absolute;
+		top: 60px;
+		left: 0;
+		background: #d8d6d6;
+		text-align: left;
+		padding-left: 0;
+		font-weight: 400;
+		line-height: 40px;
+	}
 </style>
 </head>
 <nav th:fragment="nav">
@@ -374,7 +389,16 @@
 	<div class="menu-div">
 		<ul>
 			<li class="selected">首页</li>
-			<li>菜谱分类</li>
+			<li id="menuSortLi" style="position: relative">
+				菜谱分类
+				<ul id="menuSort" class="display-none">
+					<li>家常菜</li>
+					<li>下饭菜</li>
+					<li>烘焙</li>
+					<li>肉类</li>
+					<li>蔬菜</li>
+				</ul>
+			</li>
 			<li>大厨特色</li>
 			<li>我的</li>
 		</ul>
@@ -389,5 +413,24 @@
 	<script src="/js/appjs/blog/clean-blog.min.js"></script>
 	<script src="/js/plugins/summernote/summernote.min.js"></script>
 	<script src="/js/plugins/summernote/summernote-zh-CN.js"></script>
+	<!--<script type="text/javascript" src="/js/appjs/blog/bContent/add.js"></script>-->
+
+	<script type="text/javascript">
+        $(function(){
+            $("li").click(function() {
+                $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
+                $(this).addClass('selected');                            // 为当前li添加边框样式
+            });
+
+            $("#menuSortLi").on({
+                mouseover : function(){
+                    $("#menuSort").removeClass('display-none');
+                } ,
+                mouseout : function(){
+                    $("#menuSort").addClass('display-none');
+                }
+            }) ;
+        });
+	</script>
 </div>
 
