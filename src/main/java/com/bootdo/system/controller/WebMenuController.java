@@ -52,6 +52,16 @@ public class WebMenuController {
 		PageUtils pageUtils = new PageUtils(webMenuList, total);
 		return pageUtils;
 	}
+	@ResponseBody
+	@GetMapping("/webList")
+	public PageUtils webList(@RequestParam Map<String, Object> params){
+		//查询列表数据
+		Query query = new Query(params);
+		List<WebMenuDO> webMenuList = webMenuService.list(query);
+		int total = webMenuService.count(query);
+		PageUtils pageUtils = new PageUtils(webMenuList, total);
+		return pageUtils;
+	}
 	
 	@GetMapping("/add")
 	@RequiresPermissions("system:webMenu:add")
