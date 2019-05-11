@@ -3,47 +3,94 @@
 <meta charset="utf-8">
 <head th:include="blog/index/include_blog::header"></head>
 <body>
-	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
-	<header class="intro-header"
-		style="background-image: url('/img/blog/home-bg.jpg')">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-					<div class="site-heading">
-						<h1>BootDo Blog</h1>
-						<span class="subheading">bootdo 博客</span>
+	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top bg-color" ></nav>
+
+	<div style="margin-top: 140px;">
+		<!--菜谱部分-->
+		<div class="main_mid_product">
+			<div class="mid_product_min">
+				<!--产品展示卡片-->
+				<div class="product_cards">
+					<div class="fir_M2HIS floatl marginR15 imdBorder">
+						<img src="img/cook/1.jpg" class="m2his_png">
+						<hr>
+						<span class="priceSpan">芒果毛巾卷</span>
+						<span class="buyBtn">已收藏</span>
 					</div>
+
+					<div class="sec_home_doc floatl marginR15 imdBorder">
+						<img src="img/cook/1.jpg" class="jiating_png">
+						<hr>
+						<span class="priceSpan">芒果毛巾卷</span>
+						<span class="buyBtn">收藏</span>
+					</div>
+
+					<div class="thi_doc_app floatl marginR15 imdBorder">
+						<img src="img/cook/1.jpg" class="mobile_png">
+						<hr>
+						<span class="priceSpan">芒果毛巾卷</span>
+						<span class="buyBtn">收藏</span>
+					</div>
+
+					<div class="thi_doc_app floatl imdBorder">
+						<img src="img/cook/1.jpg" class="mobile_png">
+						<hr>
+						<span class="priceSpan">芒果毛巾卷</span>
+						<span class="buyBtn">收藏</span>
+					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 		</div>
-	</header>
 
-	<!-- Main Content -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div id="incomeNum"></div>
-				<div class="clearfix">
-					<p id="flagLoaded" style="display: none; text-align: center;">已全部加载</p>
-					<a id="flagLoad" style="display: none;" class="btn btn-secondary float-right" 
-						href="javascript:void(0)" onclick="nextPage()">更早 &rarr;</a>
+		<!--底部-->
+		<div class="footer_shouye">
+			<div class="footer_min_top">
+				<div class="footer_top">
+					<div class="footer_tel floatl">
+						<div class="footer_tel_cen">
+							<!--<img src="./img/clip_about/icon_footer_tel.png" class="floatl marginR6">-->
+							<p class="floatl colorP">0532-6666888</p>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="footer_mail floatl">
+						<div class="footer_mail_cen">
+							<!--<img src="./img/clip_about/icon_footer_mail.png" class="floatl marginR6">-->
+							<p class="floatl colorP">760810955@qq.com</p>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="footer_loc floatl">
+						<div class="footer_loc_cen">
+							<!--<img src="./img/clip_about/icon_footer_location.png" class="floatl marginR6">-->
+							<p class="colorP">北京市 朝阳区 市中路67号美食大厦15楼</p>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="footer_bot">
+				<div class="footer_min_bom">
+					<p class="colorP">cook© 2018-2019 | All Rights Reserved 鲁ICP备16768520号</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	</body>
+</body>
 	<div th:include="blog/index/include_blog::footer"></div>
 	<script type="text/javascript">
 		var limit = 10;
 		var currentPage = 0;
 		var total;
 		$(function(){
-			bindList(0);
+//			bindList(0);
 
 		});
 
 		function nextPage() {
-			bindList(currentPage * limit)
+//			bindList(currentPage * limit)
 		}
 		function bindList(offset) {
 			$
@@ -79,6 +126,13 @@
 					}
 				});
 		}
+
+        $(function(){
+            $("li").click(function() {
+                $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
+                $(this).addClass('selected');                            // 为当前li添加边框样式
+            });
+        });
 	</script>
 
 

@@ -4,8 +4,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>菜谱网站</title>
+<title>菜谱分享网站</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
+<!--<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 <link href="/css/blog/clean-blog.css" rel="stylesheet">
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -76,6 +77,268 @@
 	    border-radius: 50%;
 	    opacity: .5;
 	}
+
+	.searchBtn {
+		height: 34px;
+		background: #fff;
+		font-size: 14px;
+		line-height: 34px;
+		display: inline-block;
+		padding: 0 10px;
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		cursor: pointer;
+	}
+	.bg-color {
+		height: 80px;
+		background: -webkit-linear-gradient(left, #DD1C20, #A0000D); /* Safari 5.1 - 6.0 */
+		background: -o-linear-gradient(right, #DD1C20, #A0000D); /* Opera 11.1 - 12.0 */
+		background: -moz-linear-gradient(right, #DD1C20, #A0000D); /* Firefox 3.6 - 15 */
+		background: linear-gradient(to right, #DD1C20, #A0000D); /* 标准的语法（必须放在最后） */
+	}
+	.menu-div {
+		height: 60px;
+		background: #ffffff;
+		box-shadow: 0 0 5px #333;
+		line-height: 57px;
+		color: #333333;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.menu-div ul {
+		text-align: center;
+	}
+	.menu-div li {
+		list-style: none;
+		display: inline-block;
+		margin: 0 50px;
+		text-align: center;
+		cursor: pointer;
+	}
+	.selected{
+		border-bottom: 3px solid #DD1C20;
+	}
+	.main_mid_product {
+		width: 100%;
+		min-height: 600px;
+		/*background-color: #fbfbfb;*/
+		border-bottom: solid 1px #ebebeb;
+		box-sizing: border-box;
+	}
+	/*产品部分样式*/
+	.mid_product_min {
+		width: 973px;
+		height: 100%;
+		margin: 0 auto;
+		padding-top: 50px;
+	}
+	.product_cards {
+		/*width: 100%;*/
+		/*height: 850px;*/
+		/*position: absolute;*/
+		margin-left: 26px;
+		/*margin-top: 50px;*/
+	}
+	.fir_M2HIS, .sec_home_doc, .thi_doc_app {
+		width: 220px;
+		height: 300px;
+	}
+	.clear{clear:both;}
+	.floatl{float:left;}
+	.floatr{float:right;}
+	.marginR15 {
+		margin-right: 15px;
+	}
+	.imdBorder {
+		border: 1px solid #a2969640;
+		margin-bottom: 20px;
+	}
+	.m2his_png, .jiating_png, .mobile_png {
+		width: 218px;
+		height: 218px;
+		cursor: pointer;
+		transition: all 0.6s;
+	}
+	.m2his_png:hover, .jiating_png:hover, .mobile_png:hover {
+		transform: scale(1.05);
+	}
+	.buyBtn {
+		right: 10px;
+		top: 14px;
+		width: 75px;
+		display: inline-block;
+		height: 30px;
+		border-radius: 2px;
+		text-align: center;
+		line-height: 30px;
+		background: #f80;
+		color: #fff;
+		font-size: 14px;
+		/*margin-top: 20px;*/
+		float: right;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	hr {
+		margin-top: 0 !important;
+	}
+	.priceSpan {
+		margin-left: 10px;
+	}
+
+	/*底部*/
+	.footer_shouye {
+		/*background: url("../../img/clip_index/bg_index_footer.png");*/
+		background-color: #fbfbfb;
+		background-position:center center;
+		background-size: cover;
+	}
+	.footer {
+		width: 100%;
+		height: 350px;
+	}
+	.footer_min_top {
+		width: 973px;
+		height: 158px;
+		margin: 0 auto;
+	}
+	.footer_top {
+		width: 100%;
+		height: 100%;
+	}
+	.footer_ul {
+		width: 100%;
+		height: 12px;
+		margin-top: 29px;
+	}
+	.last_ul {
+		width: 445px;
+		height: 12px;
+		font-size: 14px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: normal;
+		letter-spacing: normal;
+		text-align: right;
+		color: #ffffff;
+		text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+		margin: auto;
+	}
+	.footer_tel {
+		width: 100%;
+		height: 14px;
+		/*margin-top: 36px;*/
+	}
+	.footer_tel_cen {
+		width: 112px;
+		height: 100%;
+		margin: auto;
+	}
+	.footer_tel_cen>img {
+		width: 12px;
+		height: 14px;
+		color: #ffffff;
+	}
+	.marginR6 {
+		margin-right: 6px;
+	}
+	.footer_mail {
+		width: 100%;
+		height: 20px;
+		margin-top: 18px;
+	}
+	.footer_mail_cen {
+		width: 158px;
+		height: 100%;
+		margin: auto;
+	}
+	.footer_mail_cen>img {
+		width: 12px;
+		height: 10px;
+		color: #ffffff;
+		margin-top: 5px;
+	}
+	.footer_loc {
+		width: 100%;
+		height: 13px;
+		margin-top: 16px;
+	}
+	.footer_loc_cen {
+		width: 254px;
+		height: 100%;
+		margin: auto;
+	}
+	.footer_loc_cen>img {
+		width: 8px;
+		height: 12px;
+		color: #ffffff;
+		margin-top: 4px;
+	}
+	.footer_tel_cen>p {
+		width: 93px;
+		height: 11px;
+		font-family: Microsoft YaHei;
+		font-size: 12px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1.25;
+		letter-spacing: normal;
+		text-align: left;
+		color: #555555;
+	}
+	.footer_mail_cen>p {
+		width: 139px;
+		height: 14px;
+		font-family: Microsoft YaHei;
+		font-size: 12px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1.5;
+		letter-spacing: normal;
+		text-align: left;
+		color: #555555;
+	}
+	.footer_loc_cen>p {
+		width: 286px;
+		height: 13px;
+		font-size: 12px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1.5;
+		letter-spacing: normal;
+		text-align: left;
+		color: #555555;
+	}
+	.footer_min_bom {
+		width: 973px;
+		height: 100%;
+		margin: 0 auto;
+	}
+	.footer_bot {
+		width: 100%;
+		height: 42px;
+		background-color: rgba(0,0,0,0.1);
+		box-sizing: border-box;
+	}
+	.footer_min_bom>p {
+		/*width: 385px;*/
+		/*height: 13px;*/
+		line-height: 42px;
+		font-size: 12px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		letter-spacing: normal;
+		text-align: center;
+		opacity: 1;
+		color: #84a9cb;
+		margin: auto!important;
+	}
 </style>
 </head>
 <nav th:fragment="nav">
@@ -87,70 +350,40 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/" style="font-size: 24px;">BootDo</a>
+			<a class="navbar-brand" style="font-size: 24px; line-height: 40px">菜谱分享网站</a>
 		</div>
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/">主页</a></li>
-				<li><a href="/blog/open/page/about">关于</a></li>
-				<li><a href="/blog/open/page/communication">交流</a></li>
-				<li><a href="/login">登录</a></li>
+				<!--<li><a href="/">主页</a></li>-->
+				<!--<li><a href="/blog/open/page/about">关于</a></li>-->
+				<!--<li><a href="/blog/open/page/communication">交流</a></li>-->
+				<!--<li><a href="/login">登录</a></li>-->
+				<li style="padding-top: 23px">
+					<input type="text" class="form-control" style="border-bottom-right-radius: 0; border-top-right-radius: 0" placeholder="请输入菜谱">
+				</li>
+				<li style="padding-top: 23px; padding-right: 30px">
+					<div class="searchBtn">搜索</div>
+				</li>
+				<li style="padding-top: 10px;"><a href="/blog/open/page/communication">注册</a></li>
+				<li style="padding-top: 10px;"><a href="../bContent/add.html">登录</a></li>
 			</ul>
 		</div>
 	</div>
-</nav>
-<div th:fragment="footer">
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-					<ul class="list-inline text-center">
-						<li><a href="https://jq.qq.com/?_wv=1027&k=5ICuFaQ"> <span
-								class="fa-stack fa-lg"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-qq fa-stack-1x fa-inverse"></i>
-							</span>
-						</a></li>
-						<li><a href="https://www.oschina.net/p/bootdo"> <span
-								class="fa-stack fa-lg"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-home fa-stack-1x fa-inverse"></i>
-							</span>
-						</a></li>
-						<li><a href="https://github.com/lcg0124/bootdo.git"> <span
-								class="fa-stack fa-lg"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-github fa-stack-1x fa-inverse"></i>
-							</span>
-						</a></li>
-					</ul>
-					<p class="copyright text-muted">Copyright &copy; bootdo.com
-						2017</p>
-					<p class="copyright text-muted">鲁ICP备17042918号</p>
 
-				</div>
-			</div>
-		</div>
-	</footer>
-	<div class="side" >
+	<div class="menu-div">
 		<ul>
-			<li>
-				<div class="qqbdimg">
-					<img src="/img/blog/qqbootdo.png" title="学习交流"/>
-				</div>
-				<a class="sidetop" id="qqbd" href="javascript:scroll(0,0)" title="学习交流"><i
-					class="fa fa-qq"></i></a>
-			</li>
-			<li>
-				<a class="sidetop" href="javascript:scroll(0,0)" title="返回顶部"><i
-					class="fa fa-arrow-up"></i></a>
-					
-			</li>
+			<li class="selected">首页</li>
+			<li>菜谱分类</li>
+			<li>大厨特色</li>
+			<li>我的</li>
 		</ul>
 	</div>
+</nav>
+<div th:fragment="footer">
 	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
+	<!--<script src="/js/bootstrap.min.js"></script>-->
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/js/plugins/layer/layer.js"></script>
 	<script src="/js/ajax-util.js"></script>
 	<script src="/js/appjs/blog/clean-blog.min.js"></script>
