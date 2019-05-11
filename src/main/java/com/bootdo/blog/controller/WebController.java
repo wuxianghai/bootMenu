@@ -22,4 +22,9 @@ public class WebController {
 		return "blog/index/customer-sign";
 	}
 
+	@GetMapping("/add")
+	String add() {
+		return "blog/bContent/add";
+	}
+
 }
