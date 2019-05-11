@@ -8,23 +8,24 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.WebMenuDO">
-		select `menu_id`,`title`,`des`,`type`,`content`,`member_id`,`create_date`,`update_date` from w_web_menu
+		select wm.menu_id,wm.title,wm.des,sd.name as type,wm.content,wm.member_id,wm.create_date,wm.update_date from w_web_menu wm
+		left join sys_dict sd ON wm.type = sd.value and sd.type = 'menu_type'
         <where>  
-		  		  <if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
-		  		  <if test="title != null and title != ''"> and title = #{title} </if>
-		  		  <if test="des != null and des != ''"> and des = #{des} </if>
-		  		  <if test="type != null and type != ''"> and type = #{type} </if>
-		  		  <if test="content != null and content != ''"> and content = #{content} </if>
-		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		  <if test="menuId != null and menuId != ''"> and wm.menu_id = #{menuId} </if>
+		  		  <if test="title != null and title != ''"> and wm.title = #{title} </if>
+		  		  <if test="des != null and des != ''"> and wm.des = #{des} </if>
+		  		  <if test="type != null and type != ''"> and wm.type = #{type} </if>
+		  		  <if test="content != null and content != ''"> and wm.content = #{content} </if>
+		  		  <if test="memberId != null and memberId != ''"> and wm.member_id = #{memberId} </if>
+		  		  <if test="createDate != null and createDate != ''"> and wm.create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and wm.update_date = #{updateDate} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by menu_id desc
+                order by wm.menu_id desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
