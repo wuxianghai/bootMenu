@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="blog/index/include_blog::header"></head>
+<body>
+	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top bg-color" ></nav>
+
+	<div style="margin-top: 140px;">
+		<!--菜谱部分-->
+		<div class="main_mid_product">
+			<div class="mid_product_min">
+				<!--产品展示卡片-->
+				<div class="product_cards">
+					<div class="fir_M2HIS floatl marginR15 imdBorder">
+						<img src="img/cook/1.jpg" class="m2his_png">
+						<hr>
+						<span class="priceSpan">登录页面</span>
+						<span class="buyBtn">已收藏</span>
+					</div>
+
+					<div class="sec_home_doc floatl marginR15 imdBorder">
+						<img src="img/cook/1.jpg" class="jiating_png">
+						<hr>
+						<span class="priceSpan">登录页面</span>
+						<span class="buyBtn">收藏</span>
+					</div>
+
+					<div class="thi_doc_app floatl marginR15 imdBorder">
+						<img src="img/cook/1.jpg" class="mobile_png">
+						<hr>
+						<span class="priceSpan">登录页面</span>
+						<span class="buyBtn">收藏</span>
+					</div>
+
+					<div class="thi_doc_app floatl imdBorder">
+						<img src="img/cook/1.jpg" class="mobile_png">
+						<hr>
+						<span class="priceSpan">登录页面</span>
+						<span class="buyBtn">收藏</span>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+
+		<!--底部-->
+		<div class="footer_shouye">
+			<div class="footer_min_top">
+				<div class="footer_top">
+					<div class="footer_tel floatl">
+						<div class="footer_tel_cen">
+							<!--<img src="./img/clip_about/icon_footer_tel.png" class="floatl marginR6">-->
+							<p class="floatl colorP">0532-6666888</p>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="footer_mail floatl">
+						<div class="footer_mail_cen">
+							<!--<img src="./img/clip_about/icon_footer_mail.png" class="floatl marginR6">-->
+							<p class="floatl colorP">760810955@qq.com</p>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="footer_loc floatl">
+						<div class="footer_loc_cen">
+							<!--<img src="./img/clip_about/icon_footer_location.png" class="floatl marginR6">-->
+							<p class="colorP">北京市 朝阳区 市中路67号美食大厦15楼</p>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="footer_bot">
+				<div class="footer_min_bom">
+					<p class="colorP">cook© 2018-2019 | All Rights Reserved 鲁ICP备16768520号</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<div th:include="blog/index/include_blog::footer"></div>
+	<script type="text/javascript">
+		var limit = 10;
+		var currentPage = 0;
+		var total;
+		$(function(){
+//			bindList(0);
+
+		});
+
+		function nextPage() {
+//			bindList(currentPage * limit)
+		}
+		function bindList(offset) {
+			$
+				.ajax({
+					url : 'blog/open/list?type=article&limit=10&offset=' + offset,
+					method : 'get',
+					dataType : 'json',
+					success : function(data) {
+						var rows = data.rows;
+						total = data.total;
+						var htmlText = "";
+						for (i = 0; i < rows.length; i++) {
+							htmlText += '<div class="post-preview">';
+							htmlText += '<a href="/blog/open/post/' + rows[i].cid + '">';
+							htmlText += '<h2 class="post-title">';
+							htmlText += rows[i].title;
+							htmlText += '</h2>';
+							htmlText += '</a>';
+							htmlText += '<p class="post-meta">作者：<a href="#">'
+								+ rows[i].author
+								+ '</a> &nbsp;&nbsp; '
+								+ rows[i].gtmModified + '</p>';
+							htmlText += '</div>';
+							htmlText += '<hr>';
+						}
+						$("#incomeNum").append(htmlText);
+						document.getElementById("flagLoad").style.display = "block";
+						currentPage++;
+						if (total <= currentPage * limit) {
+							document.getElementById("flagLoaded").style.display = "block";
+							document.getElementById("flagLoad").style.display = "none";
+						}
+					}
+				});
+		}
+
+        $(function(){
+            $("li").click(function() {
+                $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
+                $(this).addClass('selected');                            // 为当前li添加边框样式
+            });
+        });
+	</script>
+
+
+</html>
