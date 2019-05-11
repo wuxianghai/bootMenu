@@ -19,13 +19,25 @@ public class MemberLikeDO implements Serializable {
 	private Long likeId;
 	//菜谱ID
 	private String menuId;
+	//菜谱名字
+	private String title;
 	//用户ID
 	private String memberId;
+
+
+
 	//创建时间
 	private String createDate;
 	//修改时间
 	private String updateDate;
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	/**
 	 * 设置：
 	 */

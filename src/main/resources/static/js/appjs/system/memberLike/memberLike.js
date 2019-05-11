@@ -52,8 +52,8 @@ function load() {
 									title : '' 
 								},
 																{
-									field : 'menuId', 
-									title : '菜谱ID' 
+									field : 'title',
+									title : '菜谱名字'
 								},
 																{
 									field : 'memberId', 

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 文件上传
+ * 友情链接管理
  * 
  * @author chglee
  * @email 1992lcg@163.com
