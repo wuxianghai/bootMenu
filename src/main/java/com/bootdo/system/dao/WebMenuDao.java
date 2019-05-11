@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * 网站菜谱表
  * @author chglee
  * @email 1992lcg@163.com
- * @date 2019-05-10 16:27:08
+ * @date 2019-05-11 13:47:43
  */
 @Mapper
 public interface WebMenuDao {

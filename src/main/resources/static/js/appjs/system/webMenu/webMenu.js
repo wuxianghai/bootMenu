@@ -60,6 +60,10 @@ function load() {
 									title : '描述' 
 								},
 																{
+									field : 'type', 
+									title : '分类' 
+								},
+																{
 									field : 'content', 
 									title : '内容' 
 								},
