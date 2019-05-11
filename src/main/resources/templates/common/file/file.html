@@ -34,23 +34,7 @@
                         <div class="hr-line-dashed"></div>
                         <ul class="folder-list" style="padding: 0">
                             <li><a href="javascript:void(0)" class="file-control hactive" :class="{'aactive':type === ''}"
-                                   v-on:click="changeType('')"><i class="fa fa-folder"></i>所有文件</a></li>
-
-                            <li><a href="javascript:void(0)" class="file-control hactive" :class="{'aactive':type === 0}"
-                                   v-on:click="changeType(0)"><i class="fa fa-folder"></i>图片</a></li>
-
-                            <li><a href="javascript:void(0)" :class="{'aactive':type === 1}"
-                                   v-on:click="changeType(1)" class="file-control hactive"><i class="fa fa-folder"></i>文档</a>
-                            </li>
-
-                            <li><a href="javascript:void(0)" v-on:click="changeType(2)" :class="{'aactive':type === 2}"
-                                   class="file-control hactive"><i class="fa fa-folder"></i>视频</a></li>
-
-                            <li><a href="javascript:void(0)" v-on:click="changeType(3)" :class="{'aactive':type === 3}"
-                                   class="file-control hactive"><i class="fa fa-folder"></i>音乐</a></li>
-
-                            <li><a href="javascript:void(0)" v-on:click="changeType(99)" :class="{'aactive':type === 99}"
-                                   class="file-control hactive"><i class="fa fa-folder"></i>其他</a></li>
+                                   v-on:click="changeType('')"><i class="fa fa-folder"></i>友情链接</a></li>
                         </ul>
                     </div>
                 </div>
@@ -199,7 +183,7 @@
             elem: '#test1', //绑定元素
             url: '/common/sysFile/upload', //上传接口
             size: 1000,
-            accept: 'file',
+            accept: 'images',//指定允许上传时校验的文件类型，可选值有：images（图片）、file（所有文件）、video（视频）、audio（音频）
             done: function (r) {
                 layer.msg(r.msg);
                 app.getData();

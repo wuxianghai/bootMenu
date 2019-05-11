@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * @author chglee
  * @email 1992lcg@163.com
- * @date 2019-05-10 16:27:08
+ * @date 2019-05-11 13:47:43
  */
 public class WebMenuDO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +21,8 @@ public class WebMenuDO implements Serializable {
 	private String title;
 	//描述
 	private String des;
+	//分类
+	private String type;
 	//内容
 	private String content;
 	//网站用户ID
@@ -65,6 +67,18 @@ public class WebMenuDO implements Serializable {
 	 */
 	public String getDes() {
 		return des;
+	}
+	/**
+	 * 设置：分类
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+	/**
+	 * 获取：分类
+	 */
+	public String getType() {
+		return type;
 	}
 	/**
 	 * 设置：内容

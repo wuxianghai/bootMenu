@@ -8,20 +8,20 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.MemberLikeDO">
-		select `like_id`,`menu_id`,`member_id`,`create_date`,`update_date` from w_member_like
+		select ml.like_id,ml.menu_id,ml.member_id,ml.create_date,ml.update_date, wm.title from w_member_like ml left join w_web_menu wm on ml.menu_id = wm.menu_id
         <where>  
-		  		  <if test="likeId != null and likeId != ''"> and like_id = #{likeId} </if>
-		  		  <if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
-		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		  <if test="likeId != null and likeId != ''"> and ml.like_id = #{likeId} </if>
+		  		  <if test="menuId != null and menuId != ''"> and ml.menu_id = #{menuId} </if>
+		  		  <if test="memberId != null and memberId != ''"> and ml.member_id = #{memberId} </if>
+		  		  <if test="createDate != null and createDate != ''"> and ml.create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and ml.update_date = #{updateDate} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by like_id desc
+                order by ml.like_id desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">

@@ -4,15 +4,16 @@
 <mapper namespace="com.bootdo.system.dao.WebMenuDao">
 
 	<select id="get" resultType="com.bootdo.system.domain.WebMenuDO">
-		select `menu_id`,`title`,`des`,`content`,`member_id`,`create_date`,`update_date` from w_web_menu where menu_id = #{value}
+		select `menu_id`,`title`,`des`,`type`,`content`,`member_id`,`create_date`,`update_date` from w_web_menu where menu_id = #{value}
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.WebMenuDO">
-		select `menu_id`,`title`,`des`,`content`,`member_id`,`create_date`,`update_date` from w_web_menu
+		select `menu_id`,`title`,`des`,`type`,`content`,`member_id`,`create_date`,`update_date` from w_web_menu
         <where>  
 		  		  <if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
 		  		  <if test="title != null and title != ''"> and title = #{title} </if>
 		  		  <if test="des != null and des != ''"> and des = #{des} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
 		  		  <if test="content != null and content != ''"> and content = #{content} </if>
 		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
 		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
@@ -37,6 +38,7 @@
 		  		  <if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
 		  		  <if test="title != null and title != ''"> and title = #{title} </if>
 		  		  <if test="des != null and des != ''"> and des = #{des} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
 		  		  <if test="content != null and content != ''"> and content = #{content} </if>
 		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
 		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
@@ -49,6 +51,7 @@
 		(
 			`title`, 
 			`des`, 
+			`type`, 
 			`content`, 
 			`member_id`, 
 			`create_date`, 
@@ -58,6 +61,7 @@
 		(
 			#{title}, 
 			#{des}, 
+			#{type}, 
 			#{content}, 
 			#{memberId}, 
 			#{createDate}, 
@@ -70,6 +74,7 @@
 		<set>
 			<if test="title != null">`title` = #{title}, </if>
 			<if test="des != null">`des` = #{des}, </if>
+			<if test="type != null">`type` = #{type}, </if>
 			<if test="content != null">`content` = #{content}, </if>
 			<if test="memberId != null">`member_id` = #{memberId}, </if>
 			<if test="createDate != null">`create_date` = #{createDate}, </if>
