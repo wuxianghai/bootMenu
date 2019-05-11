@@ -49,7 +49,7 @@ function load() {
 								},
 																{
 									field : 'menuId', 
-									title : '' 
+									title : 'ID'
 								},
 																{
 									field : 'title', 
