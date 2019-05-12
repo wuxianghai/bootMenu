@@ -27,4 +27,9 @@ public class WebController {
 		return "blog/bContent/add";
 	}
 
+	@GetMapping("/my-center")
+	String myCenter() {
+		return "blog/index/my-center.html";
+	}
+
 }
