@@ -31,5 +31,9 @@ public class WebController {
 	String myCenter() {
 		return "blog/index/my-center.html";
 	}
+	@GetMapping("/menu-detail")
+	String menu_detail() {
+		return "blog/index/menu-detail.html";
+	}
 
 }
