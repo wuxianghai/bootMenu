@@ -8,38 +8,38 @@
 	<div style="margin-top: 140px;">
 		<!--菜谱部分-->
 		<div class="main_mid_product">
-			<div class="mid_product_min">
+			<div class="mid_product_min" id="product-content">
 				<!--产品展示卡片-->
-				<div class="product_cards">
-					<div class="fir_M2HIS floatl marginR15 imdBorder">
-						<img src="img/cook/1.jpg" class="m2his_png">
-						<hr>
-						<span class="priceSpan">芒果毛巾卷</span>
-						<span class="buyBtn">已收藏</span>
-					</div>
+				<!--<div class="product_cards">-->
+					<!--<div class="fir_M2HIS floatl marginR15 imdBorder">-->
+						<!--<img src="img/cook/1.jpg" class="m2his_png">-->
+						<!--<hr>-->
+						<!--<span class="priceSpan">芒果毛巾卷</span>-->
+						<!--<span class="buyBtn">已收藏</span>-->
+					<!--</div>-->
 
-					<div class="sec_home_doc floatl marginR15 imdBorder">
-						<img src="img/cook/1.jpg" class="jiating_png">
-						<hr>
-						<span class="priceSpan">芒果毛巾卷</span>
-						<span class="buyBtn">收藏</span>
-					</div>
+					<!--<div class="sec_home_doc floatl marginR15 imdBorder">-->
+						<!--<img src="img/cook/1.jpg" class="jiating_png">-->
+						<!--<hr>-->
+						<!--<span class="priceSpan">芒果毛巾卷</span>-->
+						<!--<span class="buyBtn">收藏</span>-->
+					<!--</div>-->
 
-					<div class="thi_doc_app floatl marginR15 imdBorder">
-						<img src="img/cook/1.jpg" class="mobile_png">
-						<hr>
-						<span class="priceSpan">芒果毛巾卷</span>
-						<span class="buyBtn">收藏</span>
-					</div>
+					<!--<div class="thi_doc_app floatl marginR15 imdBorder">-->
+						<!--<img src="img/cook/1.jpg" class="mobile_png">-->
+						<!--<hr>-->
+						<!--<span class="priceSpan">芒果毛巾卷</span>-->
+						<!--<span class="buyBtn">收藏</span>-->
+					<!--</div>-->
 
-					<div class="thi_doc_app floatl imdBorder">
-						<img src="img/cook/1.jpg" class="mobile_png">
-						<hr>
-						<span class="priceSpan">芒果毛巾卷</span>
-						<span class="buyBtn">收藏</span>
-					</div>
-					<div class="clear"></div>
-				</div>
+					<!--<div class="thi_doc_app floatl imdBorder">-->
+						<!--<img src="img/cook/1.jpg" class="mobile_png">-->
+						<!--<hr>-->
+						<!--<span class="priceSpan">芒果毛巾卷</span>-->
+						<!--<span class="buyBtn">收藏</span>-->
+					<!--</div>-->
+					<!--<div class="clear"></div>-->
+				<!--</div>-->
 			</div>
 		</div>
 
@@ -89,16 +89,18 @@
         function getAllMenu() {
             $.ajax({
                 cache : true,
-                url: '/system/webMenu/list',
+                url: '/system/webMenu/webList?limit=1000&offset=0',
                 type: 'get',
                 data : null,
                 async : false,
                 success: function (_data) {
-                    if (_data.success) {
-                        alert('成功');
-                    } else {
-                        alert(_data.msg);
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                           html += '<div style="padding-bottom: 20px; border-bottom: 1px solid #cdcdcd"><h3>' + _data.rows[i].title + '</h3><div><span style="margin-right: 60px">作者：灵儿</span><span>2019-05-11</span></div></div>';
+                        }
                     }
+					$("#product-content").html(html);
                 },
                 error: function () {
                     alert('失败')
