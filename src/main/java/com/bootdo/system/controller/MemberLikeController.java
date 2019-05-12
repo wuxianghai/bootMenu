@@ -36,14 +36,14 @@ public class MemberLikeController {
 	private MemberLikeService memberLikeService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:memberLike:memberLike")
+//	@RequiresPermissions("system:memberLike:memberLike")
 	String MemberLike(){
 	    return "system/memberLike/memberLike";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:memberLike:memberLike")
+//	@RequiresPermissions("system:memberLike:memberLike")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -72,7 +72,7 @@ public class MemberLikeController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("system:memberLike:add")
+//	@RequiresPermissions("system:memberLike:add")
 	public R save( MemberLikeDO memberLike){
 		if(memberLikeService.save(memberLike)>0){
 			return R.ok();

@@ -1,5 +1,6 @@
 package com.bootdo.system.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,17 +65,26 @@ public class WebMenuController {
 	}
 	
 	@GetMapping("/add")
-//	@RequiresPermissions("system:webMenu:add")
+	@RequiresPermissions("system:webMenu:add")
 	String add(){
 	    return "system/webMenu/add";
 	}
 
 	@GetMapping("/edit/{menuId}")
-//	@RequiresPermissions("system:webMenu:edit")
+	@RequiresPermissions("system:webMenu:edit")
 	String edit(@PathVariable("menuId") Long menuId,Model model){
 		WebMenuDO webMenu = webMenuService.get(menuId);
 		model.addAttribute("webMenu", webMenu);
 	    return "system/webMenu/edit";
+	}
+	@GetMapping("/detail/{menuId}")
+	Map detail(@PathVariable("menuId") Long menuId,Model model){
+		Map map = new HashMap<Object, Object>();
+		WebMenuDO webMenu = webMenuService.get(menuId);
+		map.put("code", 0);
+		map.put("msg", "操作成功");
+		map.put("data", webMenu);
+		return map;
 	}
 	
 	/**

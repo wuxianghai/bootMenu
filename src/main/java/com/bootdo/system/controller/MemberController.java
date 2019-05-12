@@ -36,14 +36,14 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:member:member")
+//	@RequiresPermissions("system:member:member")
 	String Member(){
 	    return "system/member/member";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:member:member")
+//	@RequiresPermissions("system:member:member")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -54,13 +54,13 @@ public class MemberController {
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("system:member:add")
+//	@RequiresPermissions("system:member:add")
 	String add(){
 	    return "system/member/add";
 	}
 
 	@GetMapping("/edit/{memberId}")
-	@RequiresPermissions("system:member:edit")
+//	@RequiresPermissions("system:member:edit")
 	String edit(@PathVariable("memberId") Long memberId,Model model){
 		MemberDO member = memberService.get(memberId);
 		model.addAttribute("member", member);
@@ -72,8 +72,9 @@ public class MemberController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("system:member:add")
+//	@RequiresPermissions("system:member:add")
 	public R save( MemberDO member){
+		member.setCreateDate(String.valueOf(System.currentTimeMillis()));
 		if(memberService.save(member)>0){
 			return R.ok();
 		}
@@ -84,8 +85,9 @@ public class MemberController {
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	@RequiresPermissions("system:member:edit")
+//	@RequiresPermissions("system:member:edit")
 	public R update( MemberDO member){
+		member.setUpdateDate(String.valueOf(System.currentTimeMillis()));
 		memberService.update(member);
 		return R.ok();
 	}
@@ -95,7 +97,7 @@ public class MemberController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("system:member:remove")
+//	@RequiresPermissions("system:member:remove")
 	public R remove( Long memberId){
 		if(memberService.remove(memberId)>0){
 		return R.ok();
@@ -108,7 +110,7 @@ public class MemberController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("system:member:batchRemove")
+//	@RequiresPermissions("system:member:batchRemove")
 	public R remove(@RequestParam("ids[]") Long[] memberIds){
 		memberService.batchRemove(memberIds);
 		return R.ok();

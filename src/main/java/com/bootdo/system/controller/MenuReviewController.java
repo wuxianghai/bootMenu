@@ -43,7 +43,7 @@ public class MenuReviewController {
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:menuReview:menuReview")
+//	@RequiresPermissions("system:menuReview:menuReview")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -72,7 +72,7 @@ public class MenuReviewController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("system:menuReview:add")
+//	@RequiresPermissions("system:menuReview:add")
 	public R save( MenuReviewDO menuReview){
 		if(menuReviewService.save(menuReview)>0){
 			return R.ok();
