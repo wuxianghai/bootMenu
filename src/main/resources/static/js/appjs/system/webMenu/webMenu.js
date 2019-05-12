@@ -68,8 +68,8 @@ function load() {
 									title : '内容' 
 								},
 																{
-									field : 'memberId', 
-									title : '网站用户ID' 
+									field : 'userName',
+									title : '创建者'
 								},
 																{
 									field : 'createDate', 

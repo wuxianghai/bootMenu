@@ -35,7 +35,7 @@ public class FileController extends BaseController {
 	private BootdoConfig bootdoConfig;
 
 	@GetMapping()
-	@RequiresPermissions("common:sysFile:sysFile")
+//	@RequiresPermissions("common:sysFile:sysFile")
 	String sysFile(Model model) {
 		Map<String, Object> params = new HashMap<>(16);
 		return "common/file/file";
@@ -43,7 +43,7 @@ public class FileController extends BaseController {
 
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("common:sysFile:sysFile")
+//	@RequiresPermissions("common:sysFile:sysFile")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		// 查询列表数据
 		Query query = new Query(params);
@@ -71,7 +71,7 @@ public class FileController extends BaseController {
 	 * 信息
 	 */
 	@RequestMapping("/info/{id}")
-	@RequiresPermissions("common:info")
+//	@RequiresPermissions("common:info")
 	public R info(@PathVariable("id") Long id) {
 		FileDO sysFile = sysFileService.get(id);
 		return R.ok().put("sysFile", sysFile);
@@ -82,7 +82,7 @@ public class FileController extends BaseController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("common:save")
+//	@RequiresPermissions("common:save")
 	public R save(FileDO sysFile) {
 		if (sysFileService.save(sysFile) > 0) {
 			return R.ok();
@@ -94,7 +94,7 @@ public class FileController extends BaseController {
 	 * 修改
 	 */
 	@RequestMapping("/update")
-	@RequiresPermissions("common:update")
+//	@RequiresPermissions("common:update")
 	public R update(@RequestBody FileDO sysFile) {
 		sysFileService.update(sysFile);
 
@@ -128,7 +128,7 @@ public class FileController extends BaseController {
 	 */
 	@PostMapping("/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("common:remove")
+//	@RequiresPermissions("common:remove")
 	public R remove(@RequestParam("ids[]") Long[] ids) {
 		if ("test".equals(getUsername())) {
 			return R.error(1, "演示系统不允许修改,完整体验请部署程序");

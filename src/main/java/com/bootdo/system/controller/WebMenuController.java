@@ -36,14 +36,14 @@ public class WebMenuController {
 	private WebMenuService webMenuService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:webMenu:webMenu")
+//	@RequiresPermissions("system:webMenu:webMenu")
 	String WebMenu(){
 	    return "system/webMenu/webMenu";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:webMenu:webMenu")
+//	@RequiresPermissions("system:webMenu:webMenu")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -64,13 +64,13 @@ public class WebMenuController {
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("system:webMenu:add")
+//	@RequiresPermissions("system:webMenu:add")
 	String add(){
 	    return "system/webMenu/add";
 	}
 
 	@GetMapping("/edit/{menuId}")
-	@RequiresPermissions("system:webMenu:edit")
+//	@RequiresPermissions("system:webMenu:edit")
 	String edit(@PathVariable("menuId") Long menuId,Model model){
 		WebMenuDO webMenu = webMenuService.get(menuId);
 		model.addAttribute("webMenu", webMenu);
@@ -82,7 +82,7 @@ public class WebMenuController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("system:webMenu:add")
+//	@RequiresPermissions("system:webMenu:add")
 	public R save( WebMenuDO webMenu){
 		if(webMenuService.save(webMenu)>0){
 			return R.ok();
@@ -94,7 +94,7 @@ public class WebMenuController {
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	@RequiresPermissions("system:webMenu:edit")
+//	@RequiresPermissions("system:webMenu:edit")
 	public R update( WebMenuDO webMenu){
 		webMenuService.update(webMenu);
 		return R.ok();
@@ -105,7 +105,7 @@ public class WebMenuController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("system:webMenu:remove")
+//	@RequiresPermissions("system:webMenu:remove")
 	public R remove( Long menuId){
 		if(webMenuService.remove(menuId)>0){
 		return R.ok();
@@ -118,7 +118,7 @@ public class WebMenuController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("system:webMenu:batchRemove")
+//	@RequiresPermissions("system:webMenu:batchRemove")
 	public R remove(@RequestParam("ids[]") Long[] menuIds){
 		webMenuService.batchRemove(menuIds);
 		return R.ok();
