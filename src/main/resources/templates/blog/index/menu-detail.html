@@ -9,8 +9,25 @@
 		<div style="min-height: 400px; width: 600px; margin-left: auto; margin-right: auto">
 			<h3 id="detail-title" style="margin-bottom: 15px"></h3>
 			<div id="detail-user"></div>
-			<div style="margin-bottom: 10px"><span style="border-radius: 2px;text-align: center;line-height: 30px;background: #f80;color: #fff;font-size: 14px; padding: 5px 20px;">收藏</span></div>
-			<div id="detail-div"></div>
+			<div style="margin-bottom: 10px">
+				<span style="border-radius: 2px;text-align: center;line-height: 30px;background: #f80;color: #fff;
+				font-size: 14px; padding: 5px 20px; cursor: pointer" onclick="colloctMenu()">收藏</span>
+			</div>
+			<div id="detail-div" style="margin-bottom: 50px"></div>
+
+			<div style="margin-bottom: 20px">
+				<h4>历史评价</h4>
+				<div id="his-eve-content"></div>
+			</div>
+
+			<div>
+				<h4>我要评价</h4>
+				<textarea rows="3" id="eve-text" style="width: 100%"></textarea>
+				<div style="margin-top: 10px; margin-bottom: 10px; text-align: right">
+					<span style="border-radius: 2px;text-align: center;line-height: 30px;background: #2868ff;color: #fff;
+					font-size: 14px; padding: 5px 20px; cursor: pointer" onclick="submitEve()">提交</span>
+				</div>
+			</div>
 		</div>
 
 
@@ -62,6 +79,7 @@
             });
             id = getId('id');
             getDetail();
+            getAllEve();
         });
 
         function getDetail() {
@@ -103,6 +121,85 @@
 
             //如果找不到返回false
             return false;
+        }
+        
+        function submitEve() {
+            if ($.cookie("username")) {
+                var _eveText = $("#eve-text").val();
+                $.ajax({
+                    cache : true,
+                    url: '/system/menuReview/save',
+                    type: 'get',
+                    data: {
+                        memberId: $.cookie("memberId"),
+                        menuId: id,
+                        content: _eveText
+                    },
+                    async : false,
+                    success: function (_data) {
+                        if (_data.code == 0) {
+                            parent.layer.alert('评价成功！');
+                        }
+                    },
+                    error: function () {
+                        parent.layer.alert('评价失败！');
+                    }
+                });
+            } else {
+                parent.layer.alert("您还未登录，请先登录菜谱分享网！");
+            }
+
+        }
+
+        function colloctMenu() {
+            if ($.cookie("username")) {
+                $.ajax({
+                    cache : true,
+                    url: '/system/memberLike/save',
+                    type: 'get',
+                    data: {
+                        memberId: $.cookie("memberId"),
+                        menuId: id,
+                    },
+                    async : false,
+                    success: function (_data) {
+                        if (_data.code == 0) {
+                            parent.layer.alert('收藏成功！');
+                        }
+                    },
+                    error: function () {
+                        parent.layer.alert('收藏失败！');
+                    }
+                });
+            } else {
+                parent.layer.alert("您还未登录，请先登录菜谱分享网！");
+            }
+        }
+
+        function getAllEve() {
+            $.ajax({
+                cache : true,
+                url: '/system/menuReview/list',
+                type: 'get',
+                data: {
+                    menuId: id,
+                },
+                async : false,
+                success: function (_data) {
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<div><span style="margin-right: 20px">' + _data.rows[i].content + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div>'
+                        }
+                    } else {
+                        html += '<div><span style="color: #ff4821">暂无历史评价</span></div>'
+                    }
+                    $("#his-eve-content").html(html);
+                },
+                error: function () {
+                    parent.layer.alert('收藏失败！');
+                }
+            });
         }
 	</script>
 
