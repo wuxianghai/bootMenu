@@ -388,16 +388,18 @@
 						</div>
 						<form class="form-horizontal m-t" id="signupForm">
 							<input id="cid" name="cid" type="hidden">
+							<input id="memberId" name="memberId" type="hidden">
 							<div class="form-group">
 								<label class="col-sm-1 control-label">标题：</label>
 								<div class="col-sm-4">
 									<input id="title" name="title" class="form-control" type="text">
 								</div>
-								<label class="col-sm-1 control-label">作者：</label>
-								<div class="col-sm-4">
-									<input id="author" name="author" class="form-control"
-										type="text">
-								</div>
+<!--								<label class="col-sm-1 control-label">作者：</label>-->
+<!--								<div class="col-sm-4">-->
+<!--									<input id="author" name="author" class="form-control"-->
+<!--										type="text">-->
+<!--								</div>-->
+
 							</div>
 							<div class="form-group">
 								<input id="content" name="content" type="hidden"> <label
@@ -413,9 +415,9 @@
 								<div class="col-sm-11">
 									<!--<input id="categories" name="categories" class="form-control" type="text">-->
 									<select id="categories" name="categories" class="form-control">
-										<option>None</option>
-										<option>Parallel</option>
-										<option>Sequential</option>
+<!--										<option>None</option>-->
+<!--										<option>Parallel</option>-->
+<!--										<option>Sequential</option>-->
 									</select>
 								</div>
 							</div>
@@ -470,36 +472,34 @@
 </body>
 
 <script type="text/javascript">
-    $(function(){
-        getMenuType();
-    });
-    function getMenuType() {
-        alert(22222)
-        // categories
-        $.ajax({
-            cache : true,
-            url: '/common/dict/listparams',
-            type: 'get',
-            data : {
-                type: 'menu_type'
-            },
-            async : false,
-            success: function (_data) {
-                var html = '';
-                if (_data.total > 0) {
-                    for (var i = 0; i < _data.rows.length; i++) {
-                        html += '<option>'
-                    }
-                } else {
-                    html += '<span style="color: #ff4821">您还没有在本站上传过菜谱哦 ^-^</span>'
-                }
-                $("#my-menu-content").html(html);
-            },
-            error: function () {
-                alert('失败')
-            }
-        });
-    }
+<!--    $(function(){-->
+<!--        getMenuType();-->
+<!--    });-->
+<!--    function getMenuType() {-->
+<!--&lt;!&ndash;        alert(22222)&ndash;&gt;-->
+<!--        // categories-->
+<!--        $.ajax({-->
+<!--            cache : true,-->
+<!--            url: "/common/dict/list?type=" + "menu_type",-->
+<!--            type: 'get',-->
+
+<!--            async : false,-->
+<!--            success: function (_data) {-->
+<!--                var html = '';-->
+<!--                if (_data.total > 0) {-->
+<!--                    for (var i = 0; i < _data.rows.length; i++) {-->
+<!--                        html += '<option>'-->
+<!--                    }-->
+<!--                } else {-->
+<!--                    html += '<span style="color: #ff4821">您还没有在本站上传过菜谱哦 ^-^</span>'-->
+<!--                }-->
+<!--                $("#categories").html(html);-->
+<!--            },-->
+<!--            error: function () {-->
+<!--                alert('失败')-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
 </script>
 
 </html>

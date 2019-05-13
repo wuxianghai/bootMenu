@@ -3,8 +3,10 @@ package com.bootdo.system.controller;
 import com.bootdo.common.utils.PageUtils;
 import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
+import com.bootdo.common.utils.StringUtils;
 import com.bootdo.system.domain.MemberDO;
 import com.bootdo.system.service.MemberService;
+import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,6 +71,9 @@ public class MemberController {
 	public R save( MemberDO member){
 		member.setCreateDate(String.valueOf(System.currentTimeMillis()/1000));
 		Map<String, Object> params = new HashMap<>();
+		if (StringUtils.isNotBlank(member.getUsername()) || StringUtils.isNotBlank(member.getPassword())){
+			return R.error(-1, "用户名密码不能为空！");
+		}
 		params.put("userName", member.getUsername());
 		params.put("password", member.getPassword());
 		Query query = new Query(params);

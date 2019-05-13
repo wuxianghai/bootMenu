@@ -1,5 +1,6 @@
 $().ready(function() {
-
+getType()
+$('#memberId').val($.cookie("memberId"))
 	$('.summernote').summernote({
 		height : '220px',
 		lang : 'zh-CN',
@@ -15,17 +16,16 @@ $().ready(function() {
 
 $.validator.setDefaults({
 	submitHandler : function() {
-		save(1);
+		save();
 	}
 });
-function save(status) {
-	$("#status").val(status);
+function save() {
 	var content_sn = $("#content_sn").summernote('code');
 	$("#content").val(content_sn);
 	$.ajax({
 		cache : true,
-		type : "POST",
-		url : "/blog/bContent/save",
+		type : "get",
+		url : "/system/webMenu/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -33,10 +33,7 @@ function save(status) {
 		},
 		success : function(r) {
 			if (r.code == 0) {
-				parent.layer.msg(r.msg);
-				parent.reLoad();
-				$("#cid").val(r.cid);
-
+				window.location.href="/blog";
 			} else {
 				parent.layer.alert(r.msg)
 			}
@@ -48,16 +45,39 @@ function validateRule() {
 	$("#signupForm").validate({
 		rules : {
 			title : "required",
-			author : "required",
+			categories : "required",
 			content : "required"
 		},
 		messages : {
-			title : "请填写文章标题",
-			author : "请填写文章作者",
-			content : "请填写文章内容"
+			title : "请填写菜谱标题",
+			author : "请填写菜谱类别",
+			content : "请填写菜谱内容"
 		}
 	});
 }
+function getType() {
+           $.ajax({
+				type : "get",
+				url : "/common/dict/list?type=" + "menu_type",
+				error : function(request) {
+					parent.layer.alert("Connection error");
+				},
+				success : function(r) {
+				console.log(r)
+					if (r.total > 0) {
+						var select = "";
+						$.each(r.rows, function(i,item){
+							if(item.value != 99){
+								select = select + "<option value='" + item.value + "'>" + item.name + "</option>"
+							}
+						})
+						$('#categories').html(select);
+					} else {
+						parent.layer.alert(r.msg)
+					}
+				}
+			});
+        }
 
 function returnList() {
 	alert(333)
