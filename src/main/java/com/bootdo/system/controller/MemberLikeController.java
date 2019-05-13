@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +68,15 @@ public class MemberLikeController {
 	@GetMapping("/save")
 //	@RequiresPermissions("system:memberLike:add")
 	public R save( MemberLikeDO memberLike){
+		memberLike.setCreateDate(String.valueOf(System.currentTimeMillis()/1000));
+		Map<String, Object> params = new HashMap<>();
+		params.put("menuId", memberLike.getMenuId());
+		params.put("memberId", memberLike.getMemberId());
+		Query query = new Query(params);
+		int total = memberLikeService.count(query);
+		if (total > 0){
+			return R.ok();
+		}
 		if(memberLikeService.save(memberLike)>0){
 			return R.ok();
 		}

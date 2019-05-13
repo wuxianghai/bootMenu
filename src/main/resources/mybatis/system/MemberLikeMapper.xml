@@ -8,7 +8,7 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.MemberLikeDO">
-		select ml.like_id,ml.menu_id,ml.member_id,ml.create_date,ml.update_date, wm.title from w_member_like ml left join w_web_menu wm on ml.menu_id = wm.menu_id
+		select ml.like_id,ml.menu_id,ml.member_id,FROM_UNIXTIME(ml.create_date) as create_date,ml.update_date, wm.title from w_member_like ml left join w_web_menu wm on ml.menu_id = wm.menu_id
         <where>  
 		  		  <if test="likeId != null and likeId != ''"> and ml.like_id = #{likeId} </if>
 		  		  <if test="menuId != null and menuId != ''"> and ml.menu_id = #{menuId} </if>
