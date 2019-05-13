@@ -71,7 +71,7 @@ public class MemberController {
 	public R save( MemberDO member){
 		member.setCreateDate(String.valueOf(System.currentTimeMillis()/1000));
 		Map<String, Object> params = new HashMap<>();
-		if (StringUtils.isNotBlank(member.getUsername()) || StringUtils.isNotBlank(member.getPassword())){
+		if (StringUtils.isBlank(member.getUsername()) || StringUtils.isBlank(member.getPassword())){
 			return R.error(-1, "用户名密码不能为空！");
 		}
 		params.put("userName", member.getUsername());
