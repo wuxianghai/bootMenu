@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -91,7 +91,7 @@ public class WebMenuController {
 	 * 保存
 	 */
 	@ResponseBody
-	@PostMapping("/save")
+	@GetMapping("/save")
 //	@RequiresPermissions("system:webMenu:add")
 	public R save( WebMenuDO webMenu){
 		if(webMenuService.save(webMenu)>0){
@@ -113,7 +113,7 @@ public class WebMenuController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/remove")
+	@GetMapping( "/remove")
 	@ResponseBody
 //	@RequiresPermissions("system:webMenu:remove")
 	public R remove( Long menuId){
@@ -126,7 +126,7 @@ public class WebMenuController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/batchRemove")
+	@GetMapping( "/batchRemove")
 	@ResponseBody
 //	@RequiresPermissions("system:webMenu:batchRemove")
 	public R remove(@RequestParam("ids[]") Long[] menuIds){

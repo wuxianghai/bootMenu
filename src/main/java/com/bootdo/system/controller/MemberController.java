@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,7 +71,7 @@ public class MemberController {
 	 * 保存
 	 */
 	@ResponseBody
-	@PostMapping("/save")
+	@GetMapping("/save")
 //	@RequiresPermissions("system:member:add")
 	public R save( MemberDO member){
 		member.setCreateDate(String.valueOf(System.currentTimeMillis()));
@@ -95,7 +95,7 @@ public class MemberController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/remove")
+	@GetMapping( "/remove")
 	@ResponseBody
 //	@RequiresPermissions("system:member:remove")
 	public R remove( Long memberId){
@@ -108,7 +108,7 @@ public class MemberController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/batchRemove")
+	@GetMapping( "/batchRemove")
 	@ResponseBody
 //	@RequiresPermissions("system:member:batchRemove")
 	public R remove(@RequestParam("ids[]") Long[] memberIds){

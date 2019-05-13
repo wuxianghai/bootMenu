@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,7 +71,7 @@ public class MemberLikeController {
 	 * 保存
 	 */
 	@ResponseBody
-	@PostMapping("/save")
+	@GetMapping("/save")
 //	@RequiresPermissions("system:memberLike:add")
 	public R save( MemberLikeDO memberLike){
 		if(memberLikeService.save(memberLike)>0){
@@ -93,7 +93,7 @@ public class MemberLikeController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/remove")
+	@GetMapping( "/remove")
 	@ResponseBody
 	@RequiresPermissions("system:memberLike:remove")
 	public R remove( Long likeId){
@@ -106,7 +106,7 @@ public class MemberLikeController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/batchRemove")
+	@GetMapping( "/batchRemove")
 	@ResponseBody
 	@RequiresPermissions("system:memberLike:batchRemove")
 	public R remove(@RequestParam("ids[]") Long[] likeIds){
