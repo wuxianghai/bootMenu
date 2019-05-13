@@ -89,13 +89,14 @@
                     type: 'get',
                     success: function (_data) {
                         if (_data.success) {
-                            alert('登录成功');
+                            parent.layer.alert("登录成功！");
                         } else {
+                            parent.layer.alert(_data.msg);
                             alert(_data.msg);
                         }
                     },
                     error: function () {
-                        alert('登录失败,请重新登录')
+                        parent.layer.alert("登录失败,请重新登录！");
                     }
                 });
             });

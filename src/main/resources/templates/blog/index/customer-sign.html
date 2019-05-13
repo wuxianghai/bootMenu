@@ -77,8 +77,6 @@
         $("#signBtn").click(function () {
             var userName = $("#userNameSign").val();
             var password = $("#passwordSign").val();
-            alert(userName)
-            alert(password)
             $.ajax({
                 url: '/system/member/save',
                 type: 'get',
@@ -88,13 +86,13 @@
 	            },
                 success: function (_data) {
                     if (_data.success) {
-                        alert('注册成功');
+                        parent.layer.alert("注册成功！");
                     } else {
-                        alert(_data.msg);
+                        parent.layer.alert(_data.msg);
                     }
                 },
                 error: function () {
-                    alert('注册失败,请重新注册')
+                    parent.layer.alert(注册失败,请重新注册);
                 }
             });
         });

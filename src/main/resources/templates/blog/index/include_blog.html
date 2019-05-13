@@ -401,7 +401,7 @@
 				</ul>
 			</li>
 			<li>大厨特色</li>
-			<li><a href="/web/my-center">我的</a></li>
+			<li><a onclick="goToMy()" id="myBtn">我的</a></li>
 		</ul>
 	</div>
 </nav>
@@ -433,6 +433,14 @@
                 }
             }) ;
         });
+
+        function goToMy() {
+            if ($.cookie("username")) {
+                location.href = 'http://localhost/web/my-center';
+            } else {
+                parent.layer.alert("您还未登录，请先登录菜谱分享网！");
+            }
+        }
 	</script>
 </div>
 
