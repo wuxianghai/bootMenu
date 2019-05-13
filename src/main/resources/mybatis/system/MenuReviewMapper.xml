@@ -8,7 +8,7 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.MenuReviewDO">
-		select `review_id`,`content`,`menu_id`,`member_id`,`create_date`,`update_date` from w_menu_review
+		select `review_id`,`content`,`menu_id`,`member_id`,FROM_UNIXTIME(create_date) as create_date,`update_date` from w_menu_review
         <where>  
 		  		  <if test="reviewId != null and reviewId != ''"> and review_id = #{reviewId} </if>
 		  		  <if test="content != null and content != ''"> and content = #{content} </if>

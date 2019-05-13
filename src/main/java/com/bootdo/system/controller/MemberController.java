@@ -67,7 +67,7 @@ public class MemberController {
 	@GetMapping("/save")
 //	@RequiresPermissions("system:member:add")
 	public R save( MemberDO member){
-		member.setCreateDate(String.valueOf(System.currentTimeMillis()));
+		member.setCreateDate(String.valueOf(System.currentTimeMillis()/1000));
 		Map<String, Object> params = new HashMap<>();
 		params.put("userName", member.getUsername());
 		params.put("password", member.getPassword());

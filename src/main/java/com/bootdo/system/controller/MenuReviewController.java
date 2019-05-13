@@ -67,6 +67,7 @@ public class MenuReviewController {
 	@GetMapping("/save")
 //	@RequiresPermissions("system:menuReview:add")
 	public R save( MenuReviewDO menuReview){
+		menuReview.setCreateDate(String.valueOf(System.currentTimeMillis()/1000));
 		if(menuReviewService.save(menuReview)>0){
 			return R.ok();
 		}

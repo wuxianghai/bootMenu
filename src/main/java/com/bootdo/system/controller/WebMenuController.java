@@ -88,6 +88,7 @@ public class WebMenuController {
 	@GetMapping("/save")
 //	@RequiresPermissions("system:webMenu:add")
 	public R save( WebMenuDO webMenu){
+        webMenu.setCreateDate(String.valueOf(System.currentTimeMillis()/1000));
 		if(webMenuService.save(webMenu)>0){
 			return R.ok();
 		}

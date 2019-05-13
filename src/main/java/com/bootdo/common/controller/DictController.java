@@ -37,7 +37,7 @@ public class DictController extends BaseController {
 
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("common:dict:dict")
+//	@RequiresPermissions("common:dict:dict")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		// 查询列表数据
 		Query query = new Query(params);
