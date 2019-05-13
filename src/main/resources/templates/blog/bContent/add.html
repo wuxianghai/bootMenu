@@ -468,4 +468,38 @@
 	</script>
 	<script src="/js/jquery.cookie.js"></script>
 </body>
+
+<script type="text/javascript">
+    $(function(){
+        getMenuType();
+    });
+    function getMenuType() {
+        alert(22222)
+        // categories
+        $.ajax({
+            cache : true,
+            url: '/common/dict/listparams',
+            type: 'get',
+            data : {
+                type: 'menu_type'
+            },
+            async : false,
+            success: function (_data) {
+                var html = '';
+                if (_data.total > 0) {
+                    for (var i = 0; i < _data.rows.length; i++) {
+                        html += '<option>'
+                    }
+                } else {
+                    html += '<span style="color: #ff4821">您还没有在本站上传过菜谱哦 ^-^</span>'
+                }
+                $("#my-menu-content").html(html);
+            },
+            error: function () {
+                alert('失败')
+            }
+        });
+    }
+</script>
+
 </html>
