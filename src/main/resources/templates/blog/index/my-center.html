@@ -6,9 +6,9 @@
 	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top bg-color" ></nav>
 
 	<div style="margin-top: 140px;">
-		<div>
+		<div style="min-height: 400px; width: 600px; margin-left: auto; margin-right: auto">
 			<h3>我上传的菜谱</h3>
-			<div>
+			<div style="margin-bottom: 10px">
 				<a href="/web/add" id="uploadBtn" type="button" class="btn btn-default btn-danger" style="padding: 10px 25px; border-radius: 10px">我要上传</a>
 			</div>
 			<div id="my-menu-content" style="margin-bottom: 50px">
@@ -67,9 +67,39 @@
                 $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
                 $(this).addClass('selected');                            // 为当前li添加边框样式
             });
-
+            getMyMenu();
             getMyCollet();
         });
+
+        function getMyMenu() {
+            $.ajax({
+                cache : true,
+                url: '/system/webMenu/webList',
+                type: 'get',
+                data : {
+                    limit: 1000,
+                    offset: 0,
+                    memberId: $.cookie("memberId")
+                },
+                async : false,
+                success: function (_data) {
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
+                                + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
+                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
+                        }
+                    } else {
+                        html += '<span style="color: #ff4821">您还没有在本站上传过菜谱哦 ^-^</span>'
+                    }
+                    $("#my-menu-content").html(html);
+                },
+                error: function () {
+                    alert('失败')
+                }
+            });
+        }
 
         function getMyCollet() {
             $.ajax({
@@ -77,19 +107,21 @@
                 url: '/system/memberLike/list',
                 type: 'get',
                 data : {
-                    memberId: '1'
+                    memberId: $.cookie("memberId")
                 },
                 async : false,
                 success: function (_data) {
-//                    var html = '';
-//                    if (_data.total > 0) {
-//                        for (var i = 0; i < _data.rows.length; i++) {
-//                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><h3>'
-//                                + _data.rows[i].title + '</h3><div><span style="margin-right: 60px">作者：'
-//                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
-//                        }
-//                    }
-//                    $("#product-content").html(html);
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><h3>'
+                                + _data.rows[i].title + '</h3><div><span style="margin-right: 60px">作者：'
+                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
+                        }
+                    } else {
+                        html += '<span style="color: #ff4821">您还没有收藏过本站菜谱哦 ^-^</span>'
+                    }
+                    $("#my-collect-content").html(html);
                 },
                 error: function () {
                     alert('失败')

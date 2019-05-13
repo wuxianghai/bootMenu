@@ -6,8 +6,11 @@
 	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top bg-color" ></nav>
 
 	<div style="margin-top: 140px;">
-		<div class="detail-div" style="min-height: 400px">
-
+		<div style="min-height: 400px; width: 600px; margin-left: auto; margin-right: auto">
+			<h3 id="detail-title" style="margin-bottom: 15px"></h3>
+			<div id="detail-user"></div>
+			<div style="margin-bottom: 10px"><span style="border-radius: 2px;text-align: center;line-height: 30px;background: #f80;color: #fff;font-size: 14px; padding: 5px 20px;">收藏</span></div>
+			<div id="detail-div"></div>
 		</div>
 
 
@@ -68,7 +71,12 @@
                 type: 'get',
                 async : false,
                 success: function (_data) {
-                    $("#detail-div").html(_data);
+                    var html = '';
+                    html += '<span style="margin-right: 60px">作者：' + (_data.data.userName ? _data.data.userName : '暂无') + '</span>';
+                    html += '<span>' + _data.data.createDate + '</span>';
+                    $("#detail-title").html(_data.data.title);
+                    $("#detail-user").html(html);
+                    $("#detail-div").html(_data.data.content);
                 },
                 error: function () {
                     alert('失败')

@@ -77,19 +77,22 @@
             $("#loginBtn").click(function () {
                 var userName = $("#userNameLogin").val();
                 var password = $("#passwordLogin").val();
-                if (userName) {
-                    console.log(33333333)
-                    $.cookie("username", userName);
-                }
 
-                console.log(2222222222222)
-                console.log($.cookie("username"))
                 $.ajax({
-                    url: 'http://76b1262b.ngrok.io/online-admin/system/user/login?userName=' + userName + '&password=' + password,
+                    url: '/system/member/list?userName=' + userName + '&password=' + password,
                     type: 'get',
                     success: function (_data) {
-                        if (_data.success) {
-                            parent.layer.alert("登录成功！");
+                        if (_data) {
+                            if (_data.total == 0) {
+                                parent.layer.alert("登录失败,请检查用户名和密码，重新登录！");
+                            } else {
+                                parent.layer.alert("登录成功！");
+                                if (userName) {
+                                    console.log(33333333)
+                                    $.cookie("username", userName);
+                                }
+                                $.cookie("memberId", _data.rows[0].memberId);
+                            }
                         } else {
                             parent.layer.alert(_data.msg);
                             alert(_data.msg);
