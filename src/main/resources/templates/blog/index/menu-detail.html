@@ -6,19 +6,8 @@
 	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top bg-color" ></nav>
 
 	<div style="margin-top: 140px;">
-		<div>
-			<h3>我上传的菜谱</h3>
-			<div>
-				<a href="/web/add" id="uploadBtn" type="button" class="btn btn-default btn-danger" style="padding: 10px 25px; border-radius: 10px">我要上传</a>
-			</div>
-			<div id="my-menu-content" style="margin-bottom: 50px">
+		<div class="detail-div" style="min-height: 400px">
 
-			</div>
-
-			<h3>我的收藏</h3>
-			<div id="my-collect-content" style="margin-bottom: 50px">
-
-			</div>
 		</div>
 
 
@@ -62,34 +51,24 @@
 	<div th:include="blog/index/include_blog::footer"></div>
 
 	<script type="text/javascript">
+		var id;
         $(function(){
             $("li").click(function() {
                 $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
                 $(this).addClass('selected');                            // 为当前li添加边框样式
             });
-
-            getMyCollet();
+            id = getId('id');
+            getDetail();
         });
 
-        function getMyCollet() {
+        function getDetail() {
             $.ajax({
                 cache : true,
-                url: '/system/memberLike/list',
+                url: '/system/webMenu//detail/' + id,
                 type: 'get',
-                data : {
-                    memberId: '1'
-                },
                 async : false,
                 success: function (_data) {
-//                    var html = '';
-//                    if (_data.total > 0) {
-//                        for (var i = 0; i < _data.rows.length; i++) {
-//                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><h3>'
-//                                + _data.rows[i].title + '</h3><div><span style="margin-right: 60px">作者：'
-//                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
-//                        }
-//                    }
-//                    $("#product-content").html(html);
+                    $("#detail-div").html(_data);
                 },
                 error: function () {
                     alert('失败')
@@ -97,6 +76,26 @@
             });
         }
 
+        function getId(par){
+            //获取当前URL
+            var local_url = document.location.href;
+
+            //截取get字符串
+            var getstr = local_url.substr(local_url.indexOf('?')+1)
+
+            //解析成get数组
+            var get = getstr.split('&')
+
+            //查找要找到参数（par）
+            for(var i in get){
+                if(get[i].indexOf(par+'=')>=0){
+                    return get[i].replace(par+'=','');
+                }
+            }
+
+            //如果找不到返回false
+            return false;
+        }
 	</script>
 
 
