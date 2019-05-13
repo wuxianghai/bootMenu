@@ -70,6 +70,7 @@ public class WebMenuController {
 		model.addAttribute("webMenu", webMenu);
 	    return "system/webMenu/edit";
 	}
+	@ResponseBody
 	@GetMapping("/detail/{menuId}")
 	Map detail(@PathVariable("menuId") Long menuId,Model model){
 		Map map = new HashMap<Object, Object>();
