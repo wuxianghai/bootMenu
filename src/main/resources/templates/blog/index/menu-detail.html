@@ -85,7 +85,7 @@
         function getDetail() {
             $.ajax({
                 cache : true,
-                url: '/system/webMenu//detail/' + id,
+                url: '/system/webMenu/detail/' + id,
                 type: 'get',
                 async : false,
                 success: function (_data) {
@@ -189,7 +189,7 @@
                     var html = '';
                     if (_data.total > 0) {
                         for (var i = 0; i < _data.rows.length; i++) {
-                            html += '<div><span style="margin-right: 20px">' + _data.rows[i].content + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div>'
+                            html += '<div><span style="margin-right: 20px">内容:' + _data.rows[i].content + '</span><span style="margin-right: 20px">用户:' + _data.rows[i].username + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div>'
                         }
                     } else {
                         html += '<div><span style="color: #ff4821">暂无历史评价</span></div>'
