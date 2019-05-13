@@ -78,7 +78,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/system/memberLike/**","anon");
         filterChainDefinitionMap.put("/system/friendHref/**","anon");
         filterChainDefinitionMap.put("/system/webMenu/**","anon");
-        filterChainDefinitionMap.put("/common/sysFile/**","anon");
+        filterChainDefinitionMap.put("/common/**/**","anon");
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/getVerify","anon");
         filterChainDefinitionMap.put("/css/**", "anon");
@@ -92,7 +92,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/blog", "anon");
-        filterChainDefinitionMap.put("/blog/open/**", "anon");
+        filterChainDefinitionMap.put("/blog/**/**", "anon");
         filterChainDefinitionMap.put("/web/**/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
