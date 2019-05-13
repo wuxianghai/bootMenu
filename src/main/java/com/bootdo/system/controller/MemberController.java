@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +68,14 @@ public class MemberController {
 //	@RequiresPermissions("system:member:add")
 	public R save( MemberDO member){
 		member.setCreateDate(String.valueOf(System.currentTimeMillis()));
+		Map<String, Object> params = new HashMap<>();
+		params.put("userName", member.getUsername());
+		params.put("password", member.getPassword());
+		Query query = new Query(params);
+		int total = memberService.count(query);
+		if (total > 0){
+			return R.error();
+		}
 		if(memberService.save(member)>0){
 			return R.ok();
 		}
