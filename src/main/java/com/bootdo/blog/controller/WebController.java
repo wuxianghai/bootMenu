@@ -41,4 +41,9 @@ public class WebController {
 	String characte() {
 		return "blog/index/chef-characte.html";
 	}
+
+	@GetMapping("/menu-type")
+	String menuType() {
+		return "blog/index/menu-type.html";
+	}
 }

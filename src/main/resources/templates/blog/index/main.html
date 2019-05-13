@@ -87,7 +87,8 @@
 	<div th:include="blog/index/include_blog::footer"></div>
 	<script type="text/javascript">
 
-        $(function(){
+        $(function() {
+            $("#firstPage").addClass("selected");
             getAllMenu();
             getLink();
         });

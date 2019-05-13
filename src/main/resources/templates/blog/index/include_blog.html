@@ -389,14 +389,14 @@
 
 	<div class="menu-div">
 		<ul>
-			<li class="selected">首页</li>
+			<li id="firstPage"><a href="/blog" style="padding: 20px 0">首页</a></li>
 			<li id="menuSortLi" style="position: relative">
 				菜谱分类
 				<ul id="menuSort" class="display-none">
 				</ul>
 			</li>
-			<li><a href="/web/chef-characte">大厨特色</a></li>
-			<li><a onclick="goToMy()" id="myBtn">我的</a></li>
+			<li id="dachuLi"><a href="/web/chef-characte" style="padding: 20px 0">大厨特色</a></li>
+			<li id="myLi"><a onclick="goToMy()" id="myBtn" style="padding: 20px 0">我的</a></li>
 		</ul>
 	</div>
 </nav>
@@ -452,7 +452,7 @@
 						var select = "";
 						$.each(r.rows, function(i,item){
 							if(item.value != 99){
-								select = select + "<li onclick='getMenu(" + item.value + ")' style='cursor: pointer'>" + item.name + "</li>"
+								select = select + "<li onclick='goToGetMenu(" + item.value + ")' style='cursor: pointer'>" + item.name + "</li>"
 							}
 						})
 						$('#menuSort').html(select);
@@ -463,32 +463,8 @@
 			});
         }
 
-        function getMenu(_v) {
-            $.ajax({
-                cache : true,
-                url: '/system/webMenu/webList?limit=1000&offset=0',
-                type: 'get',
-                data : {
-                    type: _v
-                },
-                async : false,
-                success: function (_data) {
-                    var html = '';
-                    if (_data.total > 0) {
-                        for (var i = 0; i < _data.rows.length; i++) {
-                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
-                                + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
-                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div></div>';
-                        }
-                    } else {
-                        html += '<div style="text-align: center"><h3>暂无该菜系的菜谱</h3></div>'
-                    }
-                    $("#product-content").html(html);
-                },
-                error: function () {
-                    parent.layer.alert('失败')
-                }
-            });
+        function goToGetMenu(_v) {
+            location.href = 'http://localhost/web/menu-type?type=' + _v;
         }
 
         function searchMenu() {

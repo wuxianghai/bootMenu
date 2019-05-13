@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="blog/index/include_blog::header"></head>
+<body>
+	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top bg-color" ></nav>
+
+	<div style="margin-top: 140px;">
+		<!--菜谱部分-->
+		<div class="main_mid_product">
+			<div class="mid_product_min" id="product-content2">
+
+			</div>
+		</div>
+
+		<!--底部-->
+		<div class="footer_shouye">
+			<div class="footer_min_top">
+				<div class="footer_top">
+					<div style="padding-top: 20px">
+						<h3 style="text-align: center">友情链接</h3>
+						<div id="link-content" style="text-align: center"></div>
+					</div>
+				</div>
+			</div>
+			<div class="footer_bot">
+				<div class="footer_min_bom">
+					<p class="colorP">cook© 2018-2019 | All Rights Reserved 鲁ICP备16768520号</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<div th:include="blog/index/include_blog::footer"></div>
+	<script type="text/javascript">
+		var type;
+        $(function() {
+            $("#menuSortLi").addClass("selected");
+            type = getTypeFun('type');
+            //获取菜单分类
+            getType();
+            getLink();
+            getMenuByType();
+
+            $("#menuSortLi").on({
+
+                mouseover : function(){
+                    $("#menuSort").removeClass('display-none');
+                } ,
+                mouseout : function(){
+                    $("#menuSort").addClass('display-none');
+                }
+            }) ;
+        });
+
+        function getType() {
+            $.ajax({
+                type : "get",
+                url : "/common/dict/list?type=" + "menu_type",
+                error : function(request) {
+                    parent.layer.alert("Connection error");
+                },
+                success : function(r) {
+                    if (r.total > 0) {
+                        var select = "";
+                        $.each(r.rows, function(i,item){
+                            if(item.value != 99){
+                                select = select + "<li onclick='goToGetMenu(" + item.value + ")' style='cursor: pointer'>" + item.name + "</li>"
+                            }
+                        })
+                        $('#menuSort').html(select);
+                    } else {
+                        parent.layer.alert(r.msg)
+                    }
+                }
+            });
+        }
+
+        function goToGetMenu(_v) {
+            location.href = 'http://localhost/web/menu-type?type=' + _v;
+        }
+
+        function getMenuByType() {
+            $.ajax({
+                cache : true,
+                url: '/system/webMenu/webList?limit=1000&offset=0',
+                type: 'get',
+                data : {
+                    type: type
+                },
+                async : false,
+                success: function (_data) {
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
+                                + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
+                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div></div>';
+                        }
+                    } else {
+                        html += '<div style="text-align: center"><h3>暂无该菜系的菜谱</h3></div>'
+                    }
+                    $("#product-content2").html(html);
+                },
+                error: function () {
+                    parent.layer.alert('失败')
+                }
+            });
+        }
+
+        function getTypeFun(par){
+            //获取当前URL
+            var local_url = document.location.href;
+
+            //截取get字符串
+            var getstr = local_url.substr(local_url.indexOf('?')+1)
+
+            //解析成get数组
+            var get = getstr.split('&')
+
+            //查找要找到参数（par）
+            for(var i in get){
+                if(get[i].indexOf(par+'=')>=0){
+                    return get[i].replace(par+'=','');
+                }
+            }
+
+            //如果找不到返回false
+            return false;
+        }
+
+
+        function getLink() {
+            $.ajax({
+                cache : true,
+                url: '/common/sysFile/list',
+                type: 'get',
+                data : null,
+                async : false,
+                success: function (_data) {
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<img style="width: 80px; height: 50px; margin-right: 20px; margin-bottom: 10px" src="' + _data.rows[i].url + '">';
+                        }
+                    } else {
+                        html += '<h4>暂无友情链接</h4>'
+                    }
+                    $("#link-content").html(html);
+                },
+                error: function () {
+                    alert('失败')
+                }
+            });
+        }
+	</script>
+
+
+</html>

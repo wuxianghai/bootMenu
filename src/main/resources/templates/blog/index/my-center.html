@@ -63,6 +63,7 @@
 
 	<script type="text/javascript">
         $(function(){
+            $("#myLi").addClass("selected");
             $("li").click(function() {
                 $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
                 $(this).addClass('selected');                            // 为当前li添加边框样式
@@ -124,7 +125,7 @@
                     $("#my-collect-content").html(html);
                 },
                 error: function () {
-                    alert('失败')
+                    parent.layer.alert("失败！");
                 }
             });
         }
