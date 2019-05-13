@@ -85,8 +85,10 @@
                     password: password,
 	            },
                 success: function (_data) {
-                    if (_data.success) {
+                console.log(_data)
+                    if (_data.code == 0) {
                         parent.layer.alert("注册成功！");
+                        location.href = 'http://localhost/web/customer-login';
                     } else {
                         parent.layer.alert(_data.msg);
                     }
