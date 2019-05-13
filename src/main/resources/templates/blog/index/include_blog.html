@@ -201,7 +201,7 @@
 	}
 	.footer_min_top {
 		width: 973px;
-		height: 158px;
+		min-height: 158px;
 		margin: 0 auto;
 	}
 	.footer_top {
@@ -375,10 +375,10 @@
 				<!--<li><a href="/blog/open/page/communication">交流</a></li>-->
 				<!--<li><a href="/login">登录</a></li>-->
 				<li style="padding-top: 23px">
-					<input type="text" class="form-control" style="border-bottom-right-radius: 0; border-top-right-radius: 0" placeholder="请输入菜谱">
+					<input id="search-input" type="text" class="form-control" style="border-bottom-right-radius: 0; border-top-right-radius: 0" placeholder="请输入菜谱">
 				</li>
 				<li style="padding-top: 23px; padding-right: 30px">
-					<div class="searchBtn">搜索</div>
+					<div class="searchBtn" onclick="searchMenu()">搜索</div>
 				</li>
 				<li style="padding-top: 10px;"><a href="/web/customer-sign">注册</a></li>
 				<li style="padding-top: 10px;"><a href="/web/customer-login">登录</a></li>
@@ -452,12 +452,11 @@
 					parent.layer.alert("Connection error");
 				},
 				success : function(r) {
-				console.log(r)
 					if (r.total > 0) {
 						var select = "";
 						$.each(r.rows, function(i,item){
 							if(item.value != 99){
-								select = select + "<li>" + item.name + "</li>"
+								select = select + "<li onclick='getMenu(" + item.value + ")' style='cursor: pointer'>" + item.name + "</li>"
 							}
 						})
 						$('#menuSort').html(select);
@@ -466,6 +465,63 @@
 					}
 				}
 			});
+        }
+
+        function getMenu(_v) {
+            $.ajax({
+                cache : true,
+                url: '/system/webMenu/webList?limit=1000&offset=0',
+                type: 'get',
+                data : {
+                    type: _v
+                },
+                async : false,
+                success: function (_data) {
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
+                                + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
+                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div></div>';
+                        }
+                    } else {
+                        html += '<div style="text-align: center"><h3>暂无该菜系的菜谱</h3></div>'
+                    }
+                    $("#product-content").html(html);
+                },
+                error: function () {
+                    parent.layer.alert('失败')
+                }
+            });
+        }
+
+        function searchMenu() {
+	        var text = $("#search-input").val();
+            $.ajax({
+                cache : true,
+                url: '/system/webMenu/webList?limit=1000&offset=0',
+                type: 'get',
+                data : {
+                    title: text
+                },
+                async : false,
+                success: function (_data) {
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
+                                + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
+                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div></div>';
+                        }
+                    } else {
+                        html += '<div style="text-align: center"><h3>暂无关于该菜的菜谱</h3></div>'
+                    }
+                    $("#product-content").html(html);
+                },
+                error: function () {
+                    parent.layer.alert('失败')
+                }
+            });
         }
 	</script>
 </div>
