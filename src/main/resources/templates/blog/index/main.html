@@ -47,28 +47,33 @@
 		<div class="footer_shouye">
 			<div class="footer_min_top">
 				<div class="footer_top">
-					<div class="footer_tel floatl">
-						<div class="footer_tel_cen">
-							<!--<img src="./img/clip_about/icon_footer_tel.png" class="floatl marginR6">-->
-							<p class="floatl colorP">0532-6666888</p>
-							<div class="clear"></div>
-						</div>
+					<div style="padding-top: 20px">
+						<h3 style="text-align: center">友情链接</h3>
+						<div id="link-content" style="text-align: center"></div>
 					</div>
-					<div class="footer_mail floatl">
-						<div class="footer_mail_cen">
-							<!--<img src="./img/clip_about/icon_footer_mail.png" class="floatl marginR6">-->
-							<p class="floatl colorP">760810955@qq.com</p>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="footer_loc floatl">
-						<div class="footer_loc_cen">
-							<!--<img src="./img/clip_about/icon_footer_location.png" class="floatl marginR6">-->
-							<p class="colorP">北京市 朝阳区 市中路67号美食大厦15楼</p>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="clear"></div>
+
+					<!--<div class="footer_tel floatl">-->
+						<!--<div class="footer_tel_cen">-->
+							<!--&lt;!&ndash;<img src="./img/clip_about/icon_footer_tel.png" class="floatl marginR6">&ndash;&gt;-->
+							<!--<p class="floatl colorP">0532-6666888</p>-->
+							<!--<div class="clear"></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="footer_mail floatl">-->
+						<!--<div class="footer_mail_cen">-->
+							<!--&lt;!&ndash;<img src="./img/clip_about/icon_footer_mail.png" class="floatl marginR6">&ndash;&gt;-->
+							<!--<p class="floatl colorP">760810955@qq.com</p>-->
+							<!--<div class="clear"></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="footer_loc floatl">-->
+						<!--<div class="footer_loc_cen">-->
+							<!--&lt;!&ndash;<img src="./img/clip_about/icon_footer_location.png" class="floatl marginR6">&ndash;&gt;-->
+							<!--<p class="colorP">北京市 朝阳区 市中路67号美食大厦15楼</p>-->
+							<!--<div class="clear"></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="clear"></div>-->
 				</div>
 			</div>
 			<div class="footer_bot">
@@ -119,15 +124,15 @@
                 data : null,
                 async : false,
                 success: function (_data) {
-//                    var html = '';
-//                    if (_data.total > 0) {
-//                        for (var i = 0; i < _data.rows.length; i++) {
-//                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
-//                                + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
-//                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
-//                        }
-//                    }
-//                    $("#product-content").html(html);
+                    var html = '';
+                    if (_data.total > 0) {
+                        for (var i = 0; i < _data.rows.length; i++) {
+                            html += '<img style="width: 80px; height: 50px; margin-right: 20px; margin-bottom: 10px" href="localhost' + _data.rows[i].url + '">';
+                        }
+                    } else {
+                        html += '<h4>暂无友情链接</h4>'
+                    }
+                    $("#link-content").html(html);
                 },
                 error: function () {
                     alert('失败')
