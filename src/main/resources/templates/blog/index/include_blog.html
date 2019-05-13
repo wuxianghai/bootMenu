@@ -393,11 +393,11 @@
 			<li id="menuSortLi" style="position: relative">
 				菜谱分类
 				<ul id="menuSort" class="display-none">
-					<li>家常菜</li>
-					<li>下饭菜</li>
-					<li>烘焙</li>
-					<li>肉类</li>
-					<li>蔬菜</li>
+<!--					<li>家常菜</li>-->
+<!--					<li>下饭菜</li>-->
+<!--					<li>烘焙</li>-->
+<!--					<li>肉类</li>-->
+<!--					<li>蔬菜</li>-->
 				</ul>
 			</li>
 			<li>大厨特色</li>
@@ -419,6 +419,9 @@
 
 	<script type="text/javascript">
         $(function(){
+        	//获取菜单分类
+        	getType();
+
             $("li").click(function() {
                 $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
                 $(this).addClass('selected');                            // 为当前li添加边框样式
@@ -440,6 +443,29 @@
             } else {
                 parent.layer.alert("您还未登录，请先登录菜谱分享网！");
             }
+        }
+        function getType() {
+           $.ajax({
+				type : "get",
+				url : "/common/dict/list?type=" + "menu_type",
+				error : function(request) {
+					parent.layer.alert("Connection error");
+				},
+				success : function(r) {
+				console.log(r)
+					if (r.total > 0) {
+						var select = "";
+						$.each(r.rows, function(i,item){
+							if(item.value != 99){
+								select = select + "<li>" + item.name + "</li>"
+							}
+						})
+						$('#menuSort').html(select);
+					} else {
+						parent.layer.alert(r.msg)
+					}
+				}
+			});
         }
 	</script>
 </div>
