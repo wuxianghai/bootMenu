@@ -84,6 +84,7 @@
 
         $(function(){
             getAllMenu();
+            getLink();
         });
 
         function getAllMenu() {
@@ -99,10 +100,34 @@
                         for (var i = 0; i < _data.rows.length; i++) {
                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
 	                           + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
-	                           + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
+	                           + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate.substring(0, 10) + '</span></div></div>';
                         }
                     }
 					$("#product-content").html(html);
+                },
+                error: function () {
+                    alert('失败')
+                }
+            });
+        }
+
+        function getLink() {
+            $.ajax({
+                cache : true,
+                url: '/common/sysFile/list',
+                type: 'get',
+                data : null,
+                async : false,
+                success: function (_data) {
+//                    var html = '';
+//                    if (_data.total > 0) {
+//                        for (var i = 0; i < _data.rows.length; i++) {
+//                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
+//                                + _data.rows[i].title + '</h3></a><div><span style="margin-right: 60px">作者：'
+//                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
+//                        }
+//                    }
+//                    $("#product-content").html(html);
                 },
                 error: function () {
                     alert('失败')
