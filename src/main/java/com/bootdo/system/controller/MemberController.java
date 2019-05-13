@@ -74,7 +74,7 @@ public class MemberController {
 		if (StringUtils.isBlank(member.getUsername()) || StringUtils.isBlank(member.getPassword())){
 			return R.error(-1, "用户名密码不能为空！");
 		}
-		params.put("userName", member.getUsername());
+		params.put("username", member.getUsername());
 		params.put("password", member.getPassword());
 		Query query = new Query(params);
 		int total = memberService.count(query);

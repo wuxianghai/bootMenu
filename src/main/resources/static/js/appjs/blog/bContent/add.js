@@ -33,7 +33,8 @@ function save() {
 		},
 		success : function(r) {
 			if (r.code == 0) {
-				window.location.href="/blog";
+				// window.location.href="/blog";
+                location.href = 'http://localhost/blog';
 			} else {
 				parent.layer.alert(r.msg)
 			}
