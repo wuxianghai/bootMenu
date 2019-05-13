@@ -8,21 +8,21 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.MenuReviewDO">
-		select `review_id`,`content`,`menu_id`,`member_id`,FROM_UNIXTIME(create_date) as create_date,`update_date` from w_menu_review
+		select wmr.review_id,wmr.content,wmr.menu_id,wmr.member_id,wmm.username,FROM_UNIXTIME(wmr.create_date) as create_date,wmr.update_date from w_menu_review wmr left join w_member wmm on wmr.member_id = wmm.member_id
         <where>  
-		  		  <if test="reviewId != null and reviewId != ''"> and review_id = #{reviewId} </if>
-		  		  <if test="content != null and content != ''"> and content = #{content} </if>
-		  		  <if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
-		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
+		  		  <if test="reviewId != null and reviewId != ''"> and wmr.review_id = #{reviewId} </if>
+		  		  <if test="content != null and content != ''"> and wmr.content = #{content} </if>
+		  		  <if test="menuId != null and menuId != ''"> and wmr.menu_id = #{menuId} </if>
+		  		  <if test="memberId != null and memberId != ''"> and wmr.member_id = #{memberId} </if>
+		  		  <if test="createDate != null and createDate != ''"> and wmr.create_date = #{createDate} </if>
+		  		  <if test="updateDate != null and updateDate != ''"> and wmr.update_date = #{updateDate} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by review_id desc
+                order by wmr.review_id desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">

@@ -127,7 +127,7 @@
                     var html = '';
                     if (_data.total > 0) {
                         for (var i = 0; i < _data.rows.length; i++) {
-                            html += '<img style="width: 80px; height: 50px; margin-right: 20px; margin-bottom: 10px" href="localhost' + _data.rows[i].url + '">';
+                            html += '<img style="width: 80px; height: 50px; margin-right: 20px; margin-bottom: 10px" src="' + _data.rows[i].url + '">';
                         }
                     } else {
                         html += '<h4>暂无友情链接</h4>'

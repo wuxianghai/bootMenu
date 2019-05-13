@@ -365,7 +365,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" style="font-size: 24px; line-height: 40px">菜谱分享网站</a>
+			<a class="navbar-brand" style="font-size: 24px; line-height: 40px" href="/blog">菜谱分享网站</a>
 		</div>
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
@@ -437,6 +437,7 @@
                 location.href = 'http://localhost/web/my-center';
             } else {
                 parent.layer.alert("您还未登录，请先登录菜谱分享网！");
+                location.href = 'http://localhost/web/my-center';
             }
         }
         function getType() {

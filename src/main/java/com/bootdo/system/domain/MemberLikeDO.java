@@ -24,12 +24,21 @@ public class MemberLikeDO implements Serializable {
 	//用户ID
 	private String memberId;
 
-
+	private String username;
 
 	//创建时间
 	private String createDate;
 	//修改时间
 	private String updateDate;
+
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public String getTitle() {
 		return title;

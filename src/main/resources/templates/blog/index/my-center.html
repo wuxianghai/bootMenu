@@ -114,9 +114,9 @@
                     var html = '';
                     if (_data.total > 0) {
                         for (var i = 0; i < _data.rows.length; i++) {
-                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><h3>'
+                            html += '<div style="padding-bottom: 20px; padding-top: 10px; border-bottom: 1px solid #cdcdcd"><a href="/web/menu-detail?id=' + _data.rows[i].menuId + '"><h3>'
                                 + _data.rows[i].title + '</h3><div><span style="margin-right: 60px">作者：'
-                                + (_data.rows[i].userName ? _data.rows[i].userName : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
+                                + (_data.rows[i].username ? _data.rows[i].username : '暂无') + '</span><span>' + _data.rows[i].createDate + '</span></div></div>';
                         }
                     } else {
                         html += '<span style="color: #ff4821">您还没有收藏过本站菜谱哦 ^-^</span>'
