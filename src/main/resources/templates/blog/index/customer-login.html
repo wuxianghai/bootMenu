@@ -79,7 +79,7 @@
                 var password = $("#passwordLogin").val();
 
                 $.ajax({
-                    url: '/system/member/list?userName=' + userName + '&password=' + password,
+                    url: '/system/member/list?username=' + userName + '&password=' + password,
                     type: 'get',
                     success: function (_data) {
                         if (_data) {
