@@ -8,7 +8,7 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.MemberDO">
-		select `member_id`,`username`,`name`,`password`,`email`,`mobile`,FROM_UNIXTIME(create_date) as create_date,`update_date` from w_member
+		select `member_id`,`username`,`name`,`password`,`email`,`mobile`,FROM_UNIXTIME(create_date) as create_date,FROM_UNIXTIME(update_date) as update_date from w_member
         <where>  
 		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
 		  		  <if test="username != null and username != ''"> and username = #{username} </if>

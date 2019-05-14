@@ -49,7 +49,7 @@ function load() {
 								},
 																{
 									field : 'memberId', 
-									title : '' 
+									title : 'ID'
 								},
 																{
 									field : 'username', 
@@ -57,7 +57,7 @@ function load() {
 								},
 																{
 									field : 'name', 
-									title : '' 
+									title : '姓名'
 								},
 																{
 									field : 'password', 
@@ -161,7 +161,7 @@ function batchRemove() {
 			ids[i] = row['memberId'];
 		});
 		$.ajax({
-			type : 'POST',
+			type : 'GET',
 			data : {
 				"ids" : ids
 			},

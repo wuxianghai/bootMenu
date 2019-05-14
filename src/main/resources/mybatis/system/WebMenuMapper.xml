@@ -10,7 +10,7 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.WebMenuDO">
-		select wm.menu_id,wm.title,wm.des,sd.name as type,wm.content,wmm.username as userName,FROM_UNIXTIME(wm.create_date) as create_date,wm.update_date from w_web_menu wm
+		select wm.menu_id,wm.title,wm.des,sd.name as type,wm.content,wmm.username as userName,FROM_UNIXTIME(wm.create_date) as create_date,FROM_UNIXTIME(wm.update_date) as update_date from w_web_menu wm
 		left join sys_dict sd ON wm.type = sd.value and sd.type = 'menu_type' left join w_member wmm on wm.member_id = wmm.member_id
         <where>  
 		  		  <if test="menuId != null and menuId != ''"> and wm.menu_id = #{menuId} </if>

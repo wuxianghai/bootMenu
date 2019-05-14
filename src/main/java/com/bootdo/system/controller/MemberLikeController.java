@@ -89,6 +89,7 @@ public class MemberLikeController {
 	@RequestMapping("/update")
 	@RequiresPermissions("system:memberLike:edit")
 	public R update( MemberLikeDO memberLike){
+		memberLike.setUpdateDate(String.valueOf(System.currentTimeMillis()/1000));
 		memberLikeService.update(memberLike);
 		return R.ok();
 	}

@@ -93,7 +93,7 @@ public class MemberController {
 	@RequestMapping("/update")
 //	@RequiresPermissions("system:member:edit")
 	public R update( MemberDO member){
-		member.setUpdateDate(String.valueOf(System.currentTimeMillis()));
+		member.setUpdateDate(String.valueOf(System.currentTimeMillis()/1000));
 		memberService.update(member);
 		return R.ok();
 	}

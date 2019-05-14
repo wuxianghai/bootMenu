@@ -380,6 +380,7 @@
 							<button type="button" class="layui-btn" id="test1">
 								<i class="fa fa-cloud"></i>上传文件
 							</button>
+							<input style="display: none" id="fileUrl" name="fileUrl" class="form-control" type="text">
 							<div class="hr-line-dashed"></div>
 							<!--<ul class="folder-list" style="padding: 0">-->
 								<!--<li><a href="javascript:void(0)" class="file-control hactive" :class="{'aactive':type === ''}"-->
@@ -439,12 +440,11 @@
             var uploadInst = upload.render({
                 elem: '#test1', //绑定元素
                 url: '/common/sysFile/upload', //上传接口
-                size: 1000,
+                size: 100000,
                 accept: 'video',//指定允许上传时校验的文件类型，可选值有：images（图片）、file（所有文件）、video（视频）、audio（音频）
                 done: function (r) {
-//                    console.log(666666666)
-//                    console.log(r)
-                    file = r.filename;
+                    file = r.fileName;
+                    $('#fileUrl').val(r.fileName);
                     layer.msg(r.msg);
 //                    app.getData();
                 },
@@ -457,14 +457,14 @@
 
         function submitChefMenu() {
             if ($.cookie("username")) {
-                if (file) {
+                if ($('#fileUrl').val() == '') {
                     parent.layer.alert("先上传文件！");
                 } else {
                     var lableTitle = $("#lable-title").val();
                     var miaosu = $("#miaosu").val();
                     $.ajax({
                         cache : true,
-                        url: '/system/memberLike/save',
+                        url: '/system/webMenu/save',
                         type: 'get',
                         data: {
                             title: lableTitle,
@@ -477,7 +477,7 @@
                         success: function (_data) {
                             if (_data.code == 0) {
                                 parent.layer.alert('上传成功！');
-                                getMenu();
+                                getChefMenu();
                             }
                         },
                         error: function () {
@@ -503,11 +503,11 @@
                     var html = '';
                     if (_data.total > 0) {
                         for (var i = 0; i < _data.rows.length; i++) {
-                            html += '<div class="file-box"><video src="localhost' + _data.rows[i].content + '"></video>'
+                            html += '<div style="padding-left: 20px" class="file-box"><video controls="controls" src="' + _data.rows[i].content + '"></video>'
 	                            + '<span>' + _data.rows[i].title + '</span></div>';
                         }
                     } else {
-                        html += '<div style="padding-left: 200px"><h3>暂无大厨特色菜谱</h3></div>'
+                        html += '<div style="padding-left: 200px;color: red;"><h3>暂无大厨特色菜谱</h3></div>'
                     }
                     $("#video-content").html(html);
                 },

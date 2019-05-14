@@ -94,7 +94,14 @@
                     html += '<span>' + _data.data.createDate + '</span>';
                     $("#detail-title").html(_data.data.title);
                     $("#detail-user").html(html);
-                    $("#detail-div").html(_data.data.content);
+                    console.log(_data.data.type)
+                    if(_data.data.type == '大厨特色'){
+                        var html = '<video controls="controls" src="' + _data.data.content + '"></video>';
+
+                        $("#detail-div").html(html);
+					}else{
+                        $("#detail-div").html(_data.data.content);
+                    }
                 },
                 error: function () {
                     alert('失败')
@@ -139,6 +146,7 @@
                     success: function (_data) {
                         if (_data.code == 0) {
                             parent.layer.alert('评价成功！');
+                            getAllEve();
                         }
                     },
                     error: function () {

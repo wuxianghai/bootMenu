@@ -32,8 +32,8 @@ function load() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset
-					           // name:$('#searchName').val(),
+								offset:params.offset,
+                                content:$('#searchName').val(),
 					           // username:$('#searchName').val()
 							};
 						},
@@ -49,27 +49,23 @@ function load() {
 								},
 																{
 									field : 'reviewId', 
-									title : '' 
+									title : 'ID'
 								},
 																{
 									field : 'content', 
 									title : '评论内容' 
 								},
 																{
-									field : 'menuId', 
-									title : '菜谱ID' 
+									field : 'title',
+									title : '菜谱名字'
 								},
 																{
-									field : 'memberId', 
-									title : '用户ID' 
+									field : 'username',
+									title : '用户名'
 								},
 																{
 									field : 'createDate', 
 									title : '创建时间' 
-								},
-																{
-									field : 'updateDate', 
-									title : '修改时间' 
 								},
 																{
 									title : '操作',
@@ -119,7 +115,7 @@ function remove(id) {
 	}, function() {
 		$.ajax({
 			url : prefix+"/remove",
-			type : "post",
+			type : "get",
 			data : {
 				'reviewId' : id
 			},
@@ -153,7 +149,7 @@ function batchRemove() {
 			ids[i] = row['reviewId'];
 		});
 		$.ajax({
-			type : 'POST',
+			type : 'GET',
 			data : {
 				"ids" : ids
 			},

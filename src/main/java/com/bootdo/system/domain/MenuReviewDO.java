@@ -24,6 +24,7 @@ public class MenuReviewDO implements Serializable {
 	//用户ID
 	private String memberId;
 	private String username;
+	private String title;
 	//创建时间
 	private String createDate;
 	//修改时间
@@ -35,6 +36,14 @@ public class MenuReviewDO implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**

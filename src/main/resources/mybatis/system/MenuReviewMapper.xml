@@ -8,8 +8,11 @@
 	</select>
 
 	<select id="list" resultType="com.bootdo.system.domain.MenuReviewDO">
-		select wmr.review_id,wmr.content,wmr.menu_id,wmr.member_id,wmm.username,FROM_UNIXTIME(wmr.create_date) as create_date,wmr.update_date from w_menu_review wmr left join w_member wmm on wmr.member_id = wmm.member_id
-        <where>  
+		select wmr.review_id,wmr.content,wmr.menu_id,wmr.member_id,wm.title,wmm.username,FROM_UNIXTIME(wmr.create_date) as create_date,FROM_UNIXTIME(wmr.update_date) as update_date
+		from w_menu_review wmr
+		left join w_web_menu wm on wmr.menu_id = wm.menu_id
+		left join w_member wmm on wmr.member_id = wmm.member_id
+        <where>
 		  		  <if test="reviewId != null and reviewId != ''"> and wmr.review_id = #{reviewId} </if>
 		  		  <if test="content != null and content != ''"> and wmr.content = #{content} </if>
 		  		  <if test="menuId != null and menuId != ''"> and wmr.menu_id = #{menuId} </if>
